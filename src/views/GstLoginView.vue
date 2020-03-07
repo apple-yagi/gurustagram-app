@@ -19,16 +19,15 @@ export default {
 
   methods: {
     handleLogin(email, password) {
-      return Auth.login(email, password)
-        .then(() => {
-          this.$router.push({ path: "/" });
-        })
-        .catch(err => {
-          this.throwReject(err);
-        });
-    },
-    throwReject(err) {
-      return Promise.reject(err);
+      return new Promise((resolve, reject) => {
+        Auth.login(email, password)
+          .then(() => {
+            this.$router.push({ path: "/" });
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
     }
   }
 };

@@ -5,6 +5,11 @@
       <v-container>
         <v-row>
           <v-col cols="12">
+            <GstAlertMessage v-show="error_msg" :alert-type="alertType" :message="error_msg" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
             <v-text-field v-model="email" :rules="emailRules" label="E-mail" outlined required></v-text-field>
           </v-col>
           <v-col cols="12">
@@ -33,6 +38,7 @@
 
 <script>
 import GstButton from "@/components/atoms/GstButton";
+import GstAlertMessage from "@/components/atoms/GstAlertMessage";
 import firebase from "firebase/app";
 import "firebase/auth";
 
@@ -41,7 +47,8 @@ const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-
 export default {
   name: "GstLoginForm",
   components: {
-    GstButton
+    GstButton,
+    GstAlertMessage
   },
 
   props: {
@@ -63,6 +70,7 @@ export default {
       password: null,
       passwordRules: [v => !!v || "パスワードを入力してください"],
       showPassword: false,
+      alertType: "error",
       error_msg: null
     };
   },
@@ -84,13 +92,10 @@ export default {
       this.error_msg = "";
 
       this.$nextTick(() => {
-        this.onlogin(this.email, this.password)
-          .catch(err => {
-            this.error_msg = err.message;
-          })
-          .then(() => {
-            this.progress = false;
-          });
+        this.onlogin(this.email, this.password).catch(err => {
+          this.error_msg = err;
+        });
+        this.progress = false;
       });
     }
   }

@@ -9,7 +9,7 @@ export default {
           resolve()
         })
         .catch(err => {
-          reject(new Error(err.message || err.response))
+          reject("ログインに失敗しました")
         })
     })
   }
