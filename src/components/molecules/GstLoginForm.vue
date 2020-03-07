@@ -25,7 +25,7 @@
             ></v-text-field>
           </v-col>
           <v-layout justify-end>
-            <GstButton :disabled="disableLoginAction" @click="handleClick">ログイン</GstButton>
+            <GstButton :classes="btn_class" :disabled="disableLoginAction" @click="handleClick">ログイン</GstButton>
           </v-layout>
           <v-layout justify-end>
             <router-link to="/signup" class="mr-5">アカウントをお持ちでない方はこちらへ</router-link>
@@ -71,7 +71,8 @@ export default {
       passwordRules: [v => !!v || "パスワードを入力してください"],
       showPassword: false,
       alertType: "error",
-      error_msg: null
+      error_msg: null,
+      btn_class: "mr-5"
     };
   },
 
