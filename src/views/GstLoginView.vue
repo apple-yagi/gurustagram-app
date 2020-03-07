@@ -8,6 +8,7 @@
 
 <script>
 import GstLoginForm from "@/components/molecules/GstLoginForm";
+import Auth from "../api/auth";
 
 export default {
   name: "GstLoginView",
@@ -17,9 +18,8 @@ export default {
   },
 
   methods: {
-    handleLogin(authInfo) {
-      return this.$store
-        .dispatch("login", authInfo)
+    handleLogin(email, password) {
+      return Auth.login(email, password)
         .then(() => {
           this.$router.push({ path: "/" });
         })

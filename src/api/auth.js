@@ -1,16 +1,15 @@
-import OnLogin from './onlogin'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
-  login: authInfo => {
+  login(email, password) {
     return new Promise((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(authInfo.email, authInfo.password)
+      firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
-          resolve(() => ({ currentUser: OnLogin }))
+          resolve()
         })
         .catch(err => {
-          reject(new Error(err.message || err.code))
+          reject(new Error(err.message || err.response))
         })
     })
   }

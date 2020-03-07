@@ -84,7 +84,7 @@ export default {
       this.error_msg = "";
 
       this.$nextTick(() => {
-        this.onlogin({ email: this.email, password: this.password })
+        this.onlogin(this.email, this.password)
           .catch(err => {
             this.error_msg = err.message;
           })
