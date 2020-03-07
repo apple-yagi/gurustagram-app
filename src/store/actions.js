@@ -1,12 +1,8 @@
 import * as types from './mutation-types'
-import { Auth } from '../api'
+import { Logined } from '../api'
 
 export default {
-  login: ({ commit }, authInfo) => {
-    return Auth.login(authInfo)
-      .then(({ currentUser }) => {
-        commit(types.AUTH_LOGIN, { currentUser })
-      })
-      .catch(err => { throw err })
+  setCurrentUser: ({ commit }) => {
+    return commit(types.LOGINED, Logined.getCurrentUser)
   }
 }

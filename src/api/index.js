@@ -1,5 +1,5 @@
-import Auth from './auth'
+import Logined from './logined'
 
 export {
-  Auth
+  Logined
 }
