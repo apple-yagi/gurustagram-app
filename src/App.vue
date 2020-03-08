@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import GstHeader from "@/components/molecules/GstHeader";
-import GstSideMenu from "@/components/molecules/GstSideMenu";
+import GstHeader from "@/components/GstHeader";
+import GstSideMenu from "@/components/GstSideMenu";
 
 export default {
   name: "App",
