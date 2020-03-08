@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { Logined } from '../api'
+import { Logined, Gurunavi } from '../api'
 
 export default {
   setCurrentUser: ({ commit }) => {
@@ -9,6 +9,16 @@ export default {
       })
       .catch(err => {
         console.log(err);
+      })
+  },
+
+  searchShops: ({ commit }, shopName) => {
+    return Gurunavi.searchShops(shopName)
+      .then((shops) => {
+        commit(types.SEARCH_SHOPS, shops)
+      })
+      .catch(err => {
+        throw err
       })
   }
 }

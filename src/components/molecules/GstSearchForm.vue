@@ -59,7 +59,6 @@ export default {
     return {
       valid: true,
       progress: false,
-      shoplist: "",
       shopName: "",
       shopNameRules: [v => !!v || "店名を入力してください"],
       custom_GstAlertMessage,
@@ -84,11 +83,8 @@ export default {
 
       this.$nextTick(() => {
         this.search(this.shopName)
-          .then(shops => {
-            this.shoplist = shops;
-          })
           .catch(err => {
-            this.error_msg = err;
+            this.custom_GstAlertMessage.error_msg = err;
           })
           .finally(() => {
             this.progress = false;

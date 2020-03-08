@@ -1,5 +1,7 @@
 import Logined from './firebase/logined'
+import Gurunavi from './Gurunavi/search'
 
 export {
-  Logined
+  Logined,
+  Gurunavi
 }

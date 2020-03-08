@@ -1,15 +1,19 @@
 import axios from "axios"
 
 export default {
-  searchShops() {
+  searchShops(shopName) {
     return new Promise((resolve, reject) => {
       axios
-        .get(process.env.VUE_APP_GNAVI_URL, { params: this.gnavi_keywd })
+        .get(process.env.VUE_APP_GNAVI_URL, {
+          params: {
+            name: shopName
+          }
+        })
         .then(shops => {
-          resolve(shops)
+          resolve(shops.data.rest)
         })
         .catch(err => {
-          reject(new Error(err))
+          reject("お店が見つかりませんでした")
         });
     })
   }

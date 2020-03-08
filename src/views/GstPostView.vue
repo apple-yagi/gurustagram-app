@@ -18,7 +18,12 @@ export default {
 
   methods: {
     handleSearch(shopName) {
-      return new Promise((resolve, reject) => {});
+      return this.$store
+        .dispatch("searchShops", shopName)
+        .catch(err => this.throwReject(err));
+    },
+    throwReject(err) {
+      return Promise.reject(err);
     }
   }
 };
