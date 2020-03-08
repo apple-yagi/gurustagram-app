@@ -39,8 +39,6 @@
 <script>
 import GstButton from "@/components/atoms/GstButton";
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
-import firebase from "firebase/app";
-import "firebase/auth";
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -93,10 +91,13 @@ export default {
       this.error_msg = "";
 
       this.$nextTick(() => {
-        this.onlogin(this.email, this.password).catch(err => {
-          this.error_msg = err;
-        });
-        this.progress = false;
+        this.onlogin(this.email, this.password)
+          .catch(err => {
+            this.error_msg = err;
+          })
+          .finally(() => {
+            this.progress = false;
+          });
       });
     }
   }
