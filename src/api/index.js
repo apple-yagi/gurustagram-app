@@ -1,4 +1,4 @@
-import Logined from './logined'
+import Logined from './firebase/logined'
 
 export {
   Logined
