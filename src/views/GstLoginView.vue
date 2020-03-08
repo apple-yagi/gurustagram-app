@@ -1,20 +1,24 @@
 <template>
   <v-container>
-    <v-layout justify-center>
-      <GstLoginForm :onlogin="handleLogin" />
-    </v-layout>
+    <GstLoginForm :onlogin="handleLogin" />
   </v-container>
 </template>
 
 <script>
 import GstLoginForm from "@/components/molecules/GstLoginForm";
-import Auth from "../api/auth";
+import Auth from "../api/firebase/auth";
 
 export default {
   name: "GstLoginView",
 
   components: {
     GstLoginForm
+  },
+
+  beforeCreate() {
+    if (this.$store.state.currentUser) {
+      this.$router.push({ path: "/" });
+    }
   },
 
   methods: {
