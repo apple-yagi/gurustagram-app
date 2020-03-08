@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="12" md="6">
+      <v-col cols="12" sm="8" md="12">
         <v-form v-model="valid">
           <v-layout justify-space-between>
             <v-text-field label="店名" v-model="shopName" outlined solo clearable />

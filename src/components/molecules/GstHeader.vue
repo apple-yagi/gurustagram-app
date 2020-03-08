@@ -1,17 +1,16 @@
 <template>
-  <v-app-bar app color="secondary" dark>
-    <v-btn to="/">
-      <v-icon>zmdi zmdi-cutlery</v-icon>
-      <span class="shrink ml-2 hidden-sm-and-down">Gurustagram</span>
+  <v-app-bar app color="grey lighten-4">
+    <v-btn class="ma-2" to="/" icon>
+      <v-icon>mdi-silverware</v-icon>
     </v-btn>
 
     <v-spacer />
-    <v-btn class="mr-2" to="/post">
+    <v-btn to="/post" icon>
       <v-icon>mdi-send</v-icon>
       <span class="shrink ml-2 hidden-sm-and-down">Post</span>
     </v-btn>
-    <v-btn to="/account">
-      <v-icon>zmdi zmdi-account-circle</v-icon>
+    <v-btn to="/account" icon>
+      <v-icon>mdi-account</v-icon>
       <span class="shrink ml-2 hidden-sm-and-down">Account</span>
     </v-btn>
   </v-app-bar>
