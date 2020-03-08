@@ -13,5 +13,5 @@ export const authorizeToken = (to, from, next) => {
     } else {
       next()
     }
-  }, 100)
+  }, 1000)
 }
