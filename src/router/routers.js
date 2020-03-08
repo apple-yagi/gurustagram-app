@@ -1,15 +1,20 @@
-import Home from '@/views/Home.vue'
-import LoginForm from '@/views/GstLoginView'
+import GstHome from '@/views/GstHome.vue'
+import GstLoginView from '@/views/GstLoginView'
+import GstPostView from '@/views/GstPostView'
 
 export default [
   {
     path: '/',
-    component: Home,
+    component: GstHome,
     meta: { requiresAuth: true }
   },
   {
+    path: '/post',
+    component: GstPostView
+  },
+  {
     path: '/login',
-    component: LoginForm
+    component: GstLoginView
   },
   {
     path: '*',
