@@ -10,6 +10,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.8",
     "firebase": "^7.10.0",
