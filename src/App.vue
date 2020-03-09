@@ -7,7 +7,7 @@
             <GstHeader v-if="mini" />
             <GstSideMenu v-else />
           </v-flex>
-          <v-flex xs12 md8>
+          <v-flex xs12 md10>
             <router-view />
           </v-flex>
         </v-layout>

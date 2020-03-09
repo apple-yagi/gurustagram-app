@@ -1,6 +1,11 @@
 <template>
   <v-card max-width="400px" class="mx-auto mt-5">
-    <v-card-title class="headline">ログイン</v-card-title>
+    <v-layout class="pt-5" justify-center>
+      <v-card-title class="headline">
+        <v-icon>mdi-silverware</v-icon>
+        <span class="font-italic font-weight-medium ma-2">Gurustagram</span>
+      </v-card-title>
+    </v-layout>
     <v-form ref="form" v-model="valid">
       <v-container>
         <v-row>
