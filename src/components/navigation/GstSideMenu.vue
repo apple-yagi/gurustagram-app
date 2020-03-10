@@ -6,9 +6,13 @@
           <v-icon>mdi-account</v-icon>
         </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title>Jane Smith</v-list-item-title>
+        <v-list-item-content v-if="user">
+          <v-list-item-title>{{ user.email }}</v-list-item-title>
           <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+        </v-list-item-content>
+
+        <v-list-item-content v-else>
+          <v-list-item-title>No User</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </template>
@@ -41,6 +45,12 @@ export default {
         { title: "Post", icon: "mdi-send", to: "/post" }
       ]
     };
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
   }
 };
 </script>
