@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer fixed permanent height="100vh">
+  <v-navigation-drawer app fixed permanent height="100vh">
     <template v-slot:prepend>
       <v-list-item two-line class="px-2">
         <v-list-item-avatar>

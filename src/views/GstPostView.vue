@@ -3,17 +3,22 @@
     <v-layout justify-center>
       <GstSearchForm :search="handleSearch" />
     </v-layout>
+    <v-row>
+      <GstShopCard v-for="shop in shops" :key="shop.name" :shop="shop" />
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import GstSearchForm from "@/components/molecules/GstSearchForm";
+import GstShopCard from "@/components/molecules/GstShopCard";
 
 export default {
   name: "GstPostView",
 
   components: {
-    GstSearchForm
+    GstSearchForm,
+    GstShopCard
   },
 
   methods: {
@@ -24,6 +29,12 @@ export default {
     },
     throwReject(err) {
       return Promise.reject(err);
+    }
+  },
+
+  computed: {
+    shops() {
+      return this.$store.state.shops;
     }
   }
 };

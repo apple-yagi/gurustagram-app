@@ -1,13 +1,11 @@
 <template>
   <v-app>
+    <GstHeader v-if="mini" />
+    <GstSideMenu v-else />
     <v-content class="brown lighten-5">
       <v-container>
         <v-layout wrap>
           <v-flex>
-            <GstHeader v-if="mini" />
-            <GstSideMenu v-else />
-          </v-flex>
-          <v-flex xs12 md10>
             <router-view />
           </v-flex>
         </v-layout>
@@ -17,8 +15,8 @@
 </template>
 
 <script>
-import GstHeader from "@/components/GstHeader";
-import GstSideMenu from "@/components/GstSideMenu";
+import GstHeader from "@/components/navigation/GstHeader";
+import GstSideMenu from "@/components/navigation/GstSideMenu";
 
 export default {
   name: "App",

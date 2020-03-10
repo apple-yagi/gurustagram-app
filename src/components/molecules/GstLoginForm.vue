@@ -33,7 +33,7 @@
             <GstButton :classes="btn_class" :disabled="disableLoginAction" @click="handleClick">ログイン</GstButton>
           </v-layout>
           <v-layout justify-end>
-            <router-link to="/signup" class="mr-5">アカウントをお持ちでない方はこちらへ</router-link>
+            <router-link to="/signup" class="mr-5 pt-3">アカウントをお持ちでない方はこちらへ</router-link>
           </v-layout>
         </v-row>
       </v-container>
