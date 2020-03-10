@@ -34,7 +34,7 @@ export default {
 
   computed: {
     shops() {
-      return this.$store.state.shops;
+      return this.$store.state.searchShops;
     }
   }
 };

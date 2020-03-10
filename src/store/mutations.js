@@ -6,6 +6,10 @@ export default {
   },
 
   [types.SEARCH_SHOPS](state, payload) {
-    state.shops = payload
+    state.searchShops = payload
+  },
+
+  [types.SET_SHOPS](state, payload) {
+    state.postedShops = payload
   }
 }

@@ -2,17 +2,21 @@
   <v-app>
     <GstHeader v-if="mini" />
     <GstSideMenu v-else />
-    <v-content class="brown lighten-5">
+
+    <v-content>
       <v-container>
-        <v-layout wrap>
-          <v-flex>
-            <router-view />
-          </v-flex>
-        </v-layout>
+        <router-view />
       </v-container>
     </v-content>
   </v-app>
 </template>
+
+<style>
+body,
+main {
+  background-color: #efebe9;
+}
+</style>
 
 <script>
 import GstHeader from "@/components/navigation/GstHeader";
