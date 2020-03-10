@@ -5,14 +5,6 @@
         <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
       </v-col>
 
-      <v-card v-if="user">
-        <v-card-title>
-          {{ user.uid }}
-          <br />
-          {{ user.email }}
-        </v-card-title>
-      </v-card>
-
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">Welcome to Vuetify</h1>
 

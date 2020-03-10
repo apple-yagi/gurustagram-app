@@ -20,7 +20,12 @@
         </div>
       </v-card-title>
       <v-col cols="12">
-        <v-alert v-show="success_msg" type="success" transition="scale-transition">{{ success_msg }}</v-alert>
+        <GstAlertMessage
+          v-show="message"
+          :alert-type="alertType"
+          :message="message"
+          transition="scale-transition"
+        />
       </v-col>
     </v-card>
 
@@ -52,7 +57,7 @@
         </v-layout>
         <v-form>
           <v-btn
-            v-if="!success_msg"
+            v-if="!message"
             class="mt-5 ml-5"
             @click="pushShop(currentShop)"
             onclick="disabled = true;"
@@ -61,7 +66,11 @@
             <span class="shrink ml-2 hidden-sm-and-down">投稿</span>
           </v-btn>
           <v-col v-else cols="12">
-            <v-alert type="success" transition="scale-transition">{{ success_msg }}</v-alert>
+            <GstAlertMessage
+              :alert-type="alertType"
+              :message="message"
+              transition="scale-transition"
+            />
           </v-col>
           <v-col cols="12">
             <v-textarea rows="5" v-model="description" label="コメント・感想" outlined></v-textarea>
@@ -80,7 +89,8 @@ textarea {
 </style>
 
 <script>
-import firebase from "firebase/app";
+import GstAlertMessage from "@/components/atoms/GstAlertMessage";
+import Post from "@/api/firebase/post";
 
 export default {
   name: "ShopCard",
@@ -91,22 +101,34 @@ export default {
     }
   },
 
+  components: {
+    GstAlertMessage
+  },
+
   data() {
     return {
       currentShop: null,
       dialog: false,
       description: null,
-      success_msg: null
+      message: null,
+      alertType: null
     };
   },
 
   methods: {
     pushShop(shop) {
-      firebase
-        .database()
-        .ref("/")
-        .push({ name: shop.name });
-      this.success_msg = "投稿できました";
+      this.message = null;
+      this.alertType = null;
+
+      Post.postShop(shop)
+        .then(message => {
+          this.message = message;
+          this.alertType = "success";
+        })
+        .catch(err => {
+          this.message = err;
+          this.alertType = "error";
+        });
     },
     openDialog: function(shop) {
       this.dialog = true;

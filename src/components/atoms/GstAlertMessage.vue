@@ -9,7 +9,8 @@ export default {
   props: {
     alertType: {
       type: String,
-      default: "info"
+      default: "info",
+      required: false
     },
     message: {
       type: String,
