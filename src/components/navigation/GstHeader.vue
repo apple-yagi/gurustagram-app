@@ -1,7 +1,8 @@
 <template>
   <v-app-bar app color="grey lighten-4">
-    <v-btn class="ma-2" to="/" icon>
+    <v-btn class="ma-2" to="/" text>
       <v-icon>mdi-silverware</v-icon>
+      <span class="font-weight-thin">Gurustagram</span>
     </v-btn>
 
     <v-spacer />
