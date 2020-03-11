@@ -5,7 +5,7 @@
     <v-row class="responsive-img-size" style="margin: auto;">
       <v-col class="py-5" v-for="(Shop, index) in Shops" :key="index" cols="12">
         <v-card @click.stop="openDialog(Shop)">
-          <!-- <v-card-title>{{ Shop.user.email }}</v-card-title> -->
+          <v-card-title>{{ Shop.uid }}</v-card-title>
           <v-layout justify-center>
             <v-img class="white--text responsive-img-size" :src="Shop.image_url.shop_image1">
               <v-container fill-height fluid>
@@ -78,7 +78,7 @@
 
 @media screen and (max-width: 767px) {
   .responsive-dialog-img {
-    width: 100%;
+    width: 50%;
   }
 }
 </style>
