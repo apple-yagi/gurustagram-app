@@ -7,7 +7,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content v-if="user">
-          <v-list-item-title>{{ user.email }}</v-list-item-title>
+          <v-list-item-title>{{ user.displayName }}</v-list-item-title>
           <v-list-item-subtitle>Logged In</v-list-item-subtitle>
         </v-list-item-content>
 
