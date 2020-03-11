@@ -5,6 +5,7 @@
     <v-row class="responsive-img-size" style="margin: auto;">
       <v-col class="py-5" v-for="(Shop, index) in Shops" :key="index" cols="12">
         <v-card @click.stop="openDialog(Shop)">
+          <!-- <v-card-title>{{ Shop.user.email }}</v-card-title> -->
           <v-layout justify-center>
             <v-img class="white--text responsive-img-size" :src="Shop.image_url.shop_image1">
               <v-container fill-height fluid>
@@ -16,15 +17,13 @@
               </v-container>
             </v-img>
           </v-layout>
-          <v-card-title>
+          <v-card-subtitle>
             <div class="text--primary">
-              <h4 class="headline mb-0">{{ Shop.name }}</h4>
+              <h4 class="mb-0">{{ Shop.name }}</h4>
             </div>
-          </v-card-title>
+          </v-card-subtitle>
           <v-card-text class="responsive-font-size">
             <span>{{ Shop.description }}</span>
-            <!-- <br />
-            <span>投稿者 : {{ Shop.username }}</span>-->
           </v-card-text>
         </v-card>
         <v-dialog

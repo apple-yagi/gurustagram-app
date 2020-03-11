@@ -59,7 +59,7 @@
           <v-btn
             v-if="!message"
             class="mt-5 ml-5"
-            @click="pushShop(currentShop)"
+            @click="pushShop(currentShop, user.uid)"
             onclick="disabled = true;"
           >
             <v-icon>mdi-send</v-icon>
@@ -115,10 +115,19 @@ export default {
     };
   },
 
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
+  },
+
   methods: {
-    pushShop(shop) {
+    pushShop(shop, uid) {
       this.message = null;
       this.alertType = null;
+
+      shop["description"] = this.description;
+      shop["uid"] = uid;
 
       Post.postShop(shop)
         .then(message => {
@@ -130,6 +139,7 @@ export default {
           this.alertType = "error";
         });
     },
+
     openDialog: function(shop) {
       this.dialog = true;
       this.currentShop = shop;

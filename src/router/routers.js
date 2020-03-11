@@ -6,11 +6,11 @@ export default [
   {
     path: '/',
     component: GstHome,
-    meta: { requiresAuth: true }
   },
   {
     path: '/post',
-    component: GstPostView
+    component: GstPostView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',

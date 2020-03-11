@@ -18,7 +18,7 @@ export default {
         { icon: "mdi-home", to: "/" },
         { icon: "mdi-send", to: "/post" },
         { icon: "mdi-account", to: "/account" },
-        { icon: "mdi-search", to: "/search" }
+        { icon: "mdi-magnify", to: "/search" }
       ]
     };
   }

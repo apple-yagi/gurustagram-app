@@ -6,10 +6,6 @@
     </v-btn>
 
     <v-spacer />
-    <v-btn to="/post" icon>
-      <v-icon>mdi-send</v-icon>
-      <span class="shrink ml-2 hidden-sm-and-down">Post</span>
-    </v-btn>
     <v-btn to="/account" icon>
       <v-icon>mdi-account</v-icon>
       <span class="shrink ml-2 hidden-sm-and-down">Account</span>
