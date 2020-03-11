@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { Logined, Gurunavi, GetShops } from '../api'
+import { Logined, Gurunavi, GetShops, Auth } from '../api'
 
 export default {
   setCurrentUser: ({ commit }) => {
@@ -26,6 +26,16 @@ export default {
     return GetShops.getShops()
       .then((shops) => {
         commit(types.SET_SHOPS, shops)
+      })
+      .catch(err => {
+        throw err
+      })
+  },
+
+  signOut: ({ commit }) => {
+    return Auth.signOut()
+      .then(() => {
+        commit(types.SIGN_OUT)
       })
       .catch(err => {
         throw err

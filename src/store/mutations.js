@@ -11,5 +11,9 @@ export default {
 
   [types.SET_SHOPS](state, payload) {
     state.postedShops = payload
+  },
+
+  [types.SIGN_OUT](state) {
+    state.currentUser = null
   }
 }
