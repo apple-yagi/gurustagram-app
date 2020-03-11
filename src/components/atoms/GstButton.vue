@@ -1,5 +1,12 @@
 <template>
-  <v-btn :tile="tile" :class="classes" :height="height" :disabled="disabled" @click="handleClick">
+  <v-btn
+    :tile="tile"
+    :class="classes"
+    :height="height"
+    :disabled="disabled"
+    @click="handleClick"
+    :loading="loading"
+  >
     <slot />
   </v-btn>
 </template>
@@ -22,6 +29,10 @@ export default {
       default: 40
     },
     tile: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
       type: Boolean,
       default: false
     }

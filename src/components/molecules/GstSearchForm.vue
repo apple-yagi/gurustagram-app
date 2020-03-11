@@ -2,13 +2,13 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="8" md="12">
-        <v-form v-model="valid">
+        <v-form>
           <v-layout justify-space-between>
             <v-text-field label="店名" v-model="shopName" outlined solo clearable />
             <GstButton
-              :disabled="disableSearchAction"
               :tile="custom_GstButton.tile"
               :height="custom_GstButton.height"
+              :loading="custom_GstButton.loading"
               @click="handleClick"
             >
               <v-icon>mdi-magnify</v-icon>
@@ -32,7 +32,8 @@ import GstAlertMessage from "@/components/atoms/GstAlertMessage";
 
 const custom_GstButton = {
   height: 55,
-  tile: true
+  tile: true,
+  loading: false
 };
 
 const custom_GstAlertMessage = {
@@ -58,36 +59,31 @@ export default {
   data() {
     return {
       valid: true,
-      progress: false,
       shopName: "",
-      shopNameRules: [v => !!v || "店名を入力してください"],
       custom_GstAlertMessage,
       custom_GstButton
     };
   },
 
-  computed: {
-    disableSearchAction() {
-      return !this.valid || this.progress;
-    }
-  },
-
   methods: {
     handleClick(ev) {
-      if (this.disableSearchAction) {
+      if (this.custom_GstButton.loading) {
         return;
       }
 
-      this.progress = true;
+      this.custom_GstButton.loading = true;
       this.error_msg = "";
 
       this.$nextTick(() => {
         this.search(this.shopName)
+          .then(() => {
+            this.custom_GstAlertMessage.error_msg = "";
+          })
           .catch(err => {
             this.custom_GstAlertMessage.error_msg = err;
           })
           .finally(() => {
-            this.progress = false;
+            this.custom_GstButton.loading = false;
           });
       });
     }

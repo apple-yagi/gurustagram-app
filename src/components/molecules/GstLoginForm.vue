@@ -10,7 +10,7 @@
       <v-container>
         <v-row>
           <v-col cols="12">
-            <GstAlertMessage v-show="error_msg" :alert-type="alertType" :message="error_msg" />
+            <GstAlertMessage v-show="error_msg" alert-type="error" :message="error_msg" />
           </v-col>
         </v-row>
         <v-row>
@@ -30,7 +30,12 @@
             ></v-text-field>
           </v-col>
           <v-layout justify-end>
-            <GstButton :classes="btn_class" :disabled="disableLoginAction" @click="handleClick">ログイン</GstButton>
+            <GstButton
+              classes="mr-5"
+              :loading="loading"
+              :disabled="disableLoginAction"
+              @click="handleClick"
+            >ログイン</GstButton>
           </v-layout>
           <v-layout justify-end>
             <router-link to="/signup" class="mr-5 pt-3">アカウントをお持ちでない方はこちらへ</router-link>
@@ -73,16 +78,15 @@ export default {
       password: null,
       passwordRules: [v => !!v || "パスワードを入力してください"],
       showPassword: false,
-      alertType: "error",
       error_msg: null,
-      btn_class: "mr-5"
+      loading: false
     };
   },
 
   computed: {
     disableLoginAction() {
       // validを使ってログイン処理の可否、progressは後述
-      return !this.valid || this.progress;
+      return !this.valid || this.loading;
     }
   },
 
@@ -92,7 +96,7 @@ export default {
         return;
       }
 
-      this.progress = true;
+      this.loading = true;
       this.error_msg = "";
 
       this.$nextTick(() => {
@@ -101,7 +105,7 @@ export default {
             this.error_msg = err;
           })
           .finally(() => {
-            this.progress = false;
+            this.loading = false;
           });
       });
     }
