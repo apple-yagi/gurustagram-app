@@ -8,6 +8,8 @@
         <router-view />
       </v-container>
     </v-content>
+
+    <GstFooter v-if="mini" />
   </v-app>
 </template>
 
@@ -21,13 +23,15 @@ main {
 <script>
 import GstHeader from "@/components/navigation/GstHeader";
 import GstSideMenu from "@/components/navigation/GstSideMenu";
+import GstFooter from "@/components/navigation/GstFooter";
 
 export default {
   name: "App",
 
   components: {
     GstHeader,
-    GstSideMenu
+    GstSideMenu,
+    GstFooter
   },
 
   data() {
