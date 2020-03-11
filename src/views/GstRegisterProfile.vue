@@ -51,7 +51,8 @@ export default {
       loading: false
     };
   },
-  beforecreated: function() {
+
+  beforeCreate() {
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
       var email = window.localStorage.getItem("emailForSignIn");
       if (!email) {
@@ -60,17 +61,18 @@ export default {
       firebase
         .auth()
         .signInWithEmailLink(email, window.location.href)
-        .then(function(result) {
-          alert(result);
+        .then(result => {
+          window.localStorage.removeItem("emailForSignIn");
         })
-        .catch(function(error) {
+        .catch(error => {
           alert(error);
+        })
+        .finally(() => {
+          this.currentUser = firebase.auth().currentUser;
         });
     }
   },
-  created: function() {
-    this.currentUser = firebase.auth().currentUser;
-  },
+
   methods: {
     setUsername: function() {
       this.loading = true;

@@ -30,8 +30,7 @@ export default [
   },
   {
     path: '/profile',
-    component: GstRegisterProfile,
-    meta: { requiresAuth: true }
+    component: GstRegisterProfile
   },
   {
     path: '*',

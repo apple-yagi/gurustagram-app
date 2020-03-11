@@ -50,7 +50,7 @@ export default {
     signUp: function() {
       var actionCodeSettings = {
         // url: "https://gurustagram-a34df.firebaseapp.com/?#/registerprofile",
-        url: "http://localhost:8080/?#/registerprofile",
+        url: "http://localhost:8080/?#/profile",
         handleCodeInApp: true
       };
 
