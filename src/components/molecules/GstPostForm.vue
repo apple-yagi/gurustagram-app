@@ -29,6 +29,7 @@
           v-if="!message"
           class="mt-5 ml-5"
           @click="pushShop(currentShop, user.uid)"
+          :disabled="valid"
           onclick="disabled = true;"
         >
           <v-icon>mdi-send</v-icon>
@@ -82,6 +83,10 @@ export default {
   computed: {
     user() {
       return this.$store.state.currentUser;
+    },
+
+    valid() {
+      return !this.description;
     }
   },
 

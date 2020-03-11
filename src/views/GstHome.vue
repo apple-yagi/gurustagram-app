@@ -19,11 +19,14 @@
           </v-layout>
           <v-card-subtitle>
             <div class="text--primary">
-              <h4 class="mb-0">{{ Shop.name }}</h4>
+              <h3 class="mb-0">{{ Shop.name }}</h3>
             </div>
           </v-card-subtitle>
+          <hr />
           <v-card-text class="responsive-font-size">
-            <span>{{ Shop.description }}</span>
+            <h4>コメント</h4>
+            <br />
+            <span class="ml-3">{{ Shop.description }}</span>
           </v-card-text>
         </v-card>
         <v-dialog
@@ -51,6 +54,7 @@
               <v-img class="responsive-dialog-img" :src="currentShop.image_url.shop_image2"></v-img>
             </v-layout>
             <v-card-title>{{ currentShop.name }}</v-card-title>
+            <hr />
             <v-card-text>
               <span>{{ currentShop.pr.pr_long }}</span>
               <br />
@@ -80,6 +84,11 @@
   .responsive-dialog-img {
     width: 50%;
   }
+}
+
+hr {
+  border-top: 1px dotted #bbb;
+  border-bottom: 1px dotted #fff;
 }
 </style>
 
