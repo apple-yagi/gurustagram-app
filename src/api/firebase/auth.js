@@ -37,9 +37,11 @@ export default {
   },
 
   signUp(email) {
+    console.log(process.env.VUE_APP_ACTION_CODE_SETTINGS_URL);
+
+
     var actionCodeSettings = {
-      // url: "https://gurustagram-a34df.firebaseapp.com/?#/registerprofile",
-      url: "http://localhost:8080/?#/profile",
+      url: process.env.VUE_APP_ACTION_CODE_SETTINGS_URL,
       handleCodeInApp: true
     };
 
