@@ -2,8 +2,8 @@
   <div class="home">
     <GstAlertMessage v-show="message" :alert-type="alertType" :message="message" />
 
-    <v-row class="responsive-img-size" style="margin: auto;">
-      <v-col class="py-5" v-for="(Shop, index) in Shops" :key="index" cols="12">
+    <div class="responsive-img-size" style="margin: auto;">
+      <div v-for="(Shop, index) in Shops" :key="index">
         <GstPostedCard :Shop="Shop" v-on:openDialog="openDialog(Shop)" />
 
         <v-dialog
@@ -42,8 +42,8 @@
             </v-card-text>
           </v-card>
         </v-dialog>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </div>
 </template>
 

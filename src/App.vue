@@ -4,9 +4,7 @@
     <GstSideMenu v-else />
 
     <v-content>
-      <v-container>
-        <router-view />
-      </v-container>
+      <router-view />
     </v-content>
 
     <GstFooter v-if="mini" />

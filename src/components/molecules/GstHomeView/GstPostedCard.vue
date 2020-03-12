@@ -1,6 +1,6 @@
 <template>
   <v-card @click="openDialog()">
-    <v-card-title>{{ User(Shop) }}</v-card-title>
+    <v-card-title>{{ User }}</v-card-title>
     <v-layout justify-center>
       <v-img class="white--text responsive-img-size" :src="Shop.image_url.shop_image1">
         <v-container fill-height fluid>
@@ -27,8 +27,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/auth";
+import Auth from "@/api/firebase/auth";
 
 export default {
   name: "GstPostedCard",
@@ -40,21 +39,20 @@ export default {
     }
   },
 
-  computed: {
-    User() {
-      return function(shop) {
-        firebase
-          .database()
-          .ref("/users/" + shop.uid)
-          .on("value", snapshot => {
-            if (snapshot.val()) {
-              return snapshot.val().name;
-            } else {
-              return "no Account";
-            }
-          });
-      };
-    }
+  data() {
+    return {
+      User: null
+    };
+  },
+
+  created() {
+    Auth.getUserInfo(this.Shop.uid)
+      .then(user => {
+        this.User = user.name;
+      })
+      .catch(err => {
+        this.User = err;
+      });
   },
 
   methods: {

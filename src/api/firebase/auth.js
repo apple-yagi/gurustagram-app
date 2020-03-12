@@ -71,5 +71,18 @@ export default {
           reject(err)
         })
     })
+  },
+
+  getUserInfo(uid) {
+    return new Promise((resolve, reject) => {
+      firebase.database().ref("/users/" + uid)
+        .on("value", snapshot => {
+          if (snapshot.val()) {
+            resolve(snapshot.val())
+          } else {
+            reject("no Account")
+          }
+        })
+    })
   }
 }
