@@ -37,9 +37,6 @@ export default {
   },
 
   signUp(email) {
-    console.log(process.env.VUE_APP_ACTION_CODE_SETTINGS_URL);
-
-
     var actionCodeSettings = {
       url: process.env.VUE_APP_ACTION_CODE_SETTINGS_URL,
       handleCodeInApp: true
