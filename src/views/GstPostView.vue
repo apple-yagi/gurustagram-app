@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import GstSearchForm from "@/components/molecules/GstSearchForm";
-import GstShopCard from "@/components/molecules/GstShopCard";
+import GstSearchForm from "@/components/molecules/GstPostView/GstSearchForm";
+import GstShopCard from "@/components/molecules/GstPostView/GstShopCard";
 
 export default {
   name: "GstPostView",

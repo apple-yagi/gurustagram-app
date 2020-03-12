@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GstLoginForm from "@/components/molecules/GstLoginForm";
+import GstLoginForm from "@/components/molecules/GstLoginView/GstLoginForm";
 import Auth from "../api/firebase/auth";
 
 export default {

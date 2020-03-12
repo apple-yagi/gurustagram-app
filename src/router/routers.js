@@ -1,4 +1,4 @@
-import GstHome from '@/views/GstHome.vue'
+import GstHomeView from '@/views/GstHomeView'
 import GstLoginView from '@/views/GstLoginView'
 import GstPostView from '@/views/GstPostView'
 import GstSignupView from '@/views/GstSignupView'
@@ -8,7 +8,7 @@ import GstAccountView from '@/views/GstAccountView'
 export default [
   {
     path: '/',
-    component: GstHome,
+    component: GstHomeView,
   },
   {
     path: '/post',

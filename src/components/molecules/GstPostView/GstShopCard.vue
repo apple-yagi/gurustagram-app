@@ -48,7 +48,7 @@ textarea {
 
 <script>
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
-import GstPostForm from "@/components/molecules/GstPostForm";
+import GstPostForm from "@/components/molecules/GstPostView/GstPostForm";
 
 export default {
   name: "ShopCard",

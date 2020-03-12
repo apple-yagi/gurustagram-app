@@ -84,6 +84,12 @@ export default {
           this.currentUser
             .updatePassword(this.password)
             .then(() => {
+              firebase
+                .database()
+                .ref("users/" + this.currentUser.uid)
+                .set({
+                  name: this.name
+                });
               this.$router.push("/account");
             })
             .catch(error => {
