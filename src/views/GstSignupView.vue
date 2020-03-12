@@ -25,8 +25,7 @@
 
 <script>
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
-import firebase from "firebase/app";
-import "firebase/auth";
+import Auth from "@/api/firebase/auth";
 
 export default {
   name: "Signup",
@@ -47,28 +46,19 @@ export default {
     };
   },
   methods: {
-    signUp: function() {
-      var actionCodeSettings = {
-        // url: "https://gurustagram-a34df.firebaseapp.com/?#/registerprofile",
-        url: "http://localhost:8080/?#/profile",
-        handleCodeInApp: true
-      };
-
+    signUp() {
       if (this.$refs.form.validate()) {
         this.loading = true;
         this.message = null;
         this.alertType = null;
 
-        firebase
-          .auth()
-          .sendSignInLinkToEmail(this.email, actionCodeSettings)
-          .then(() => {
-            window.localStorage.setItem("emailForSignIn", this.email);
-            this.message = "メールを送信しました";
+        Auth.signUp(this.email)
+          .then(msg => {
+            this.message = msg;
             this.alertType = "success";
           })
-          .catch(error => {
-            this.message = "登録に失敗しました";
+          .catch(err => {
+            this.message = err;
             this.alertType = "error";
           })
           .finally(() => {

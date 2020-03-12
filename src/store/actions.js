@@ -1,9 +1,9 @@
 import * as types from './mutation-types'
-import { Logined, Gurunavi, GetShops, Auth } from '../api'
+import { Gurunavi, GetShops, Auth } from '../api'
 
 export default {
   setCurrentUser: ({ commit }) => {
-    return Logined.getCurrentUser()
+    return Auth.getCurrentUser()
       .then((user) => {
         commit(types.LOGINED, user)
       })
