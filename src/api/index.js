@@ -1,9 +1,9 @@
 import Gurunavi from './Gurunavi/search'
-import GetShops from './firebase/get'
+import Shops from './firebase/shops'
 import Auth from './firebase/auth'
 
 export {
   Gurunavi,
-  GetShops,
+  Shops,
   Auth
 }

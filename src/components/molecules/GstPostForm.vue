@@ -52,7 +52,7 @@
 
 <script>
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
-import Post from "@/api/firebase/post";
+import Shops from "@/api/firebase/shops";
 
 export default {
   name: "GstPostForm",
@@ -98,7 +98,7 @@ export default {
       shop["description"] = this.description;
       shop["uid"] = uid;
 
-      Post.postShop(shop)
+      Shops.postShop(shop)
         .then(message => {
           this.message = message;
           this.alertType = "success";

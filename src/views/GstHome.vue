@@ -93,7 +93,6 @@ hr {
 </style>
 
 <script>
-import Get from "@/api/firebase/get";
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
 
 export default {

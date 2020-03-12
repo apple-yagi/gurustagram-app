@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { Gurunavi, GetShops, Auth } from '../api'
+import { Gurunavi, Shops, Auth } from '../api'
 
 export default {
   setCurrentUser: ({ commit }) => {
@@ -23,7 +23,7 @@ export default {
   },
 
   setShops: ({ commit }) => {
-    return GetShops.getShops()
+    return Shops.getShops()
       .then((shops) => {
         commit(types.SET_SHOPS, shops)
       })
