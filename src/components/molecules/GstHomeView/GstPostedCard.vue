@@ -17,10 +17,8 @@
         <h3 class="mb-0">{{ Shop.name }}</h3>
       </div>
     </v-card-subtitle>
-    <hr />
     <v-card-text class="responsive-font-size">
       <h4>コメント</h4>
-      <br />
       <span class="ml-3">{{ Shop.description }}</span>
     </v-card-text>
   </v-card>
