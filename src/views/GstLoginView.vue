@@ -8,11 +8,21 @@
 import GstLoginForm from "@/components/molecules/GstLoginView/GstLoginForm";
 import Auth from "../api/firebase/auth";
 
+import firebase from "firebase/app";
+import "firebase/storage";
+import "firebase/auth";
+
 export default {
   name: "GstLoginView",
 
   components: {
     GstLoginForm
+  },
+
+  data() {
+    return {
+      image: null
+    };
   },
 
   beforeCreate() {

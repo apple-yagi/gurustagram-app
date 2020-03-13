@@ -1,6 +1,9 @@
 <template>
   <v-card @click="openDialog()">
-    <v-card-title>{{ User }}</v-card-title>
+    <v-card-title>
+      <img :src="User.photoURL" width="30" height="30" />
+      {{ User.name }}
+    </v-card-title>
     <v-layout justify-center>
       <v-img class="white--text responsive-img-size" :src="Shop.image_url.shop_image1">
         <v-container fill-height fluid>
@@ -24,6 +27,15 @@
   </v-card>
 </template>
 
+<style scoped>
+@media screen and (min-width: 767px) {
+  .responsive-img-size {
+    width: 550px;
+    height: 450px;
+  }
+}
+</style>
+
 <script>
 import Auth from "@/api/firebase/auth";
 
@@ -46,7 +58,7 @@ export default {
   created() {
     Auth.getUserInfo(this.Shop.uid)
       .then(user => {
-        this.User = user.name;
+        this.User = user;
       })
       .catch(err => {
         this.User = err;
