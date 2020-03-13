@@ -31,6 +31,12 @@ export default {
     }
   },
 
+  created() {
+    this.$store.dispatch("setCurrentUser").then(() => {
+      this.$router.push({ path: "/" });
+    });
+  },
+
   methods: {
     handleLogin(email, password) {
       return new Promise((resolve, reject) => {

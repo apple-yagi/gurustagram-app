@@ -1,5 +1,5 @@
 <template>
-  <v-card @click="openDialog()">
+  <v-card v-if="User" @click="openDialog()">
     <v-card-title>
       <img :src="User.photoURL" width="30" height="30" />
       {{ User.name }}
@@ -56,13 +56,9 @@ export default {
   },
 
   created() {
-    Auth.getUserInfo(this.Shop.uid)
-      .then(user => {
-        this.User = user;
-      })
-      .catch(err => {
-        this.User = err;
-      });
+    Auth.getUserInfo(this.Shop.uid).then(user => {
+      this.User = user;
+    });
   },
 
   methods: {

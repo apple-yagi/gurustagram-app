@@ -1,6 +1,14 @@
 <template>
   <v-container>
-    <v-btn @click="signOut">サインアウト</v-btn>
+    <v-row v-if="user">
+      <v-col cols="12">
+        <img :src="user.photoURL" />
+        {{ user.displayName }}
+      </v-col>
+    </v-row>
+    <v-layout justify-end>
+      <v-btn class="ml-5" @click="signOut">サインアウト</v-btn>
+    </v-layout>
   </v-container>
 </template>
 
