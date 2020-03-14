@@ -118,7 +118,8 @@ export default {
                       .ref("users/" + this.currentUser.uid)
                       .set({
                         name: this.name,
-                        photoURL: url
+                        photoURL: url,
+                        postedCount: 0
                       });
                     this.$router.push("/account");
                   })

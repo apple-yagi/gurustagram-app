@@ -28,7 +28,7 @@
         <v-btn
           v-if="!message"
           class="mt-5 ml-5"
-          @click="pushShop(currentShop, user.uid)"
+          @click="pushShop(currentShop, user)"
           :disabled="valid"
           onclick="disabled = true;"
         >
@@ -91,14 +91,14 @@ export default {
   },
 
   methods: {
-    pushShop(shop, uid) {
+    pushShop(shop, user) {
       this.message = null;
       this.alertType = null;
 
       shop["description"] = this.description;
-      shop["uid"] = uid;
+      shop["uid"] = user.uid;
 
-      Shops.postShop(shop)
+      Shops.postShop(shop, user)
         .then(message => {
           this.message = message;
           this.alertType = "success";

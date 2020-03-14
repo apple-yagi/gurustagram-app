@@ -17,13 +17,21 @@ export default {
     })
   },
 
-  postShop(shop) {
+  postShop(shop, user) {
     return new Promise((resolve, reject) => {
+      var newPostKey = firebase.database().ref("Shops").push().key
+
       firebase
-        .database().ref("Shops")
-        .push(shop)
+        .database().ref("Shops/" + newPostKey).set(shop)
         .then(() => {
-          resolve("投稿できました")
+          firebase.database().ref("users/" + user.uid + "/posted")
+            .push(newPostKey)
+            .then(() => {
+              resolve("投稿できました")
+            })
+            .catch(err => {
+              reject("ユーザーの投稿登録に失敗しました")
+            })
         }).catch(err => {
           reject("投稿に失敗しました")
         })

@@ -7,7 +7,13 @@
 
     <v-spacer />
     <v-btn to="/account" icon>
-      <img v-if="currentUser" :src="currentUser.photoURL" width="30" height="30" />
+      <img
+        v-if="currentUser"
+        :src="currentUser.photoURL"
+        width="30"
+        height="30"
+        style="border-radius: 50%;"
+      />
       <v-icon v-else>mdi-account</v-icon>
     </v-btn>
   </v-app-bar>
