@@ -27,13 +27,13 @@ export default {
 
   beforeCreate() {
     if (this.$store.state.currentUser) {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/account" });
     }
   },
 
   created() {
     this.$store.dispatch("setCurrentUser").then(() => {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/account" });
     });
   },
 
