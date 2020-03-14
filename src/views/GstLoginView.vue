@@ -42,14 +42,9 @@ export default {
       return new Promise((resolve, reject) => {
         Auth.login(email, password)
           .then(() => {
-            this.$store
-              .dispatch("setCurrentUser")
-              .then(() => {
-                this.$router.push({ path: "/" });
-              })
-              .catch(err => {
-                console.log(err);
-              });
+            this.$store.dispatch("setCurrentUser").then(() => {
+              this.$router.push({ path: "/account" });
+            });
           })
           .catch(err => {
             reject(err);

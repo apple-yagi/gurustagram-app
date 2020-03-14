@@ -29,9 +29,6 @@ export default {
         if (user) {
           resolve(user)
         }
-        else {
-          reject("userが取得できませんでした")
-        }
       }, 1000)
     })
   },

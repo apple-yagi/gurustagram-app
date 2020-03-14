@@ -1,13 +1,16 @@
 <template>
   <v-navigation-drawer app fixed permanent height="100vh">
     <template v-slot:prepend>
-      <v-list-item two-line class="px-2">
+      <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-icon>mdi-account</v-icon>
+          <v-btn to="/account" icon>
+            <img v-if="currentUser" :src="currentUser.photoURL" style="width: 40px;" />
+            <v-icon v-else>mdi-account</v-icon>
+          </v-btn>
         </v-list-item-avatar>
 
-        <v-list-item-content v-if="user">
-          <v-list-item-title>{{ user.displayName }}</v-list-item-title>
+        <v-list-item-content v-if="currentUser">
+          <v-list-item-title>{{ currentUser.displayName }}</v-list-item-title>
           <v-list-item-subtitle>Logged In</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -48,7 +51,7 @@ export default {
   },
 
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     }
   }

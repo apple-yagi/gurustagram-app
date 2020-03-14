@@ -1,11 +1,15 @@
 <template>
-  <v-card v-if="User" @click="openDialog()">
+  <v-card v-if="User">
     <v-card-title>
       <img :src="User.photoURL" width="30" height="30" />
-      {{ User.name }}
+      <span class="ml-2">{{ User.name }}</span>
     </v-card-title>
     <v-layout justify-center>
-      <v-img class="white--text responsive-img-size" :src="Shop.image_url.shop_image1">
+      <v-img
+        class="white--text responsive-img-size"
+        :src="Shop.image_url.shop_image1"
+        @click="openDialog()"
+      >
         <v-container fill-height fluid>
           <v-layout fill-height>
             <v-flex xs12 align-end flexbox>

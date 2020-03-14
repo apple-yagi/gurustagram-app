@@ -7,8 +7,8 @@
 
     <v-spacer />
     <v-btn to="/account" icon>
-      <v-icon>mdi-account</v-icon>
-      <span class="shrink ml-2 hidden-sm-and-down">Account</span>
+      <img v-if="currentUser" :src="currentUser.photoURL" width="30" height="30" />
+      <v-icon v-else>mdi-account</v-icon>
     </v-btn>
   </v-app-bar>
 </template>
@@ -16,5 +16,17 @@
 <script>
 export default {
   name: "Header"
+};
+</script>
+
+<script>
+export default {
+  name: "GstHeader",
+
+  computed: {
+    currentUser() {
+      return this.$store.state.currentUser;
+    }
+  }
 };
 </script>

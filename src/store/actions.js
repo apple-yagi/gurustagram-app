@@ -7,9 +7,6 @@ export default {
       .then((user) => {
         commit(types.LOGINED, user)
       })
-      .catch(err => {
-        console.log(err);
-      })
   },
 
   searchShops: ({ commit }, shopName) => {
