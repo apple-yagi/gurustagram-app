@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/storage'
 
 export default {
   login(email, password) {
@@ -33,22 +34,48 @@ export default {
     })
   },
 
-  signUp(email) {
-    var actionCodeSettings = {
-      url: process.env.VUE_APP_ACTION_CODE_SETTINGS_URL,
-      handleCodeInApp: true
-    };
-
+  signUp(email, password) {
     return new Promise((resolve, reject) => {
       firebase
         .auth()
-        .sendSignInLinkToEmail(email, actionCodeSettings)
-        .then(() => {
-          window.localStorage.setItem("emailForSignIn", email);
-          resolve("メールを送信しました")
+        .createUserWithEmailAndPassword(email, password)
+        .then(user => {
+          resolve(user)
         })
         .catch(error => {
-          reject("登録に失敗しました")
+          reject(error)
+        })
+    })
+  },
+
+  updateProfile(displayName, imageFile) {
+    var photoURL = null
+
+    if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
+      var storageRef = firebase.storage().ref();
+      var moutainsRef = storageRef.child(imageFile.name);
+
+      moutainsRef.put(imageFile).then(() => {
+        moutainsRef.getDownloadURL().then(url => {
+          photoURL = url
+        })
+      })
+    } else {
+      photoURL = imageFile
+    }
+
+    var user = firebase.auth().currentUser;
+
+    return new Promise((resolve, reject) => {
+      user.updateProfile({
+        displayName: displayName,
+        photoURL: photoURL
+      })
+        .then(() => {
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
         })
     })
   },

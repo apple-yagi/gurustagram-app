@@ -5,7 +5,7 @@ export default {
     return new Promise((resolve, reject) => {
       firebase
         .database()
-        .ref("Shops")
+        .ref("shops")
         .on("value", snapshot => {
           if (snapshot.val()) {
             resolve(snapshot.val())
@@ -19,10 +19,10 @@ export default {
 
   postShop(shop, user) {
     return new Promise((resolve, reject) => {
-      var newPostKey = firebase.database().ref("Shops").push().key
+      var newPostKey = firebase.database().ref("shops").push().key
 
       firebase
-        .database().ref("Shops/" + newPostKey).set(shop)
+        .database().ref("shops/" + newPostKey).set(shop)
         .then(() => {
           firebase.database().ref("users/" + user.uid + "/posted")
             .push(newPostKey)

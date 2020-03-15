@@ -2,12 +2,12 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.countShops = functions.database.ref(`/Shops`).onWrite((change, context) => {
-  //変更後のusers要素を取得
+exports.countShops = functions.database.ref(`/shops`).onWrite((change, context) => {
+  //変更後のshops要素を取得
   const data = change.after.val();
   //子要素の数をカウント
   const count = Object.keys(data).length;
-  //カウントした件数を、users_countに設定
+  //カウントした件数を、shops_countに設定
   return change.after.ref.parent.child('shops_count').set(count);
 });
 

@@ -2,7 +2,6 @@ import GstHomeView from '@/views/GstHomeView'
 import GstLoginView from '@/views/GstLoginView'
 import GstPostView from '@/views/GstPostView'
 import GstSignupView from '@/views/GstSignupView'
-import GstRegisterProfile from '@/views/GstRegisterProfile'
 import GstAccountView from '@/views/GstAccountView'
 
 export default [
@@ -27,10 +26,6 @@ export default [
   {
     path: '/signup',
     component: GstSignupView
-  },
-  {
-    path: '/profile',
-    component: GstRegisterProfile
   },
   {
     path: '*',
