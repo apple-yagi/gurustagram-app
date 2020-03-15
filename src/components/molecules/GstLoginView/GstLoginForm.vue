@@ -85,7 +85,6 @@ export default {
 
   computed: {
     disableLoginAction() {
-      // validを使ってログイン処理の可否、progressは後述
       return !this.valid || this.loading;
     }
   },

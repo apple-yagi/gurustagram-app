@@ -11,6 +11,11 @@ exports.countShops = functions.database.ref(`/shops`).onWrite((change, context) 
   return change.after.ref.parent.child('shops_count').set(count);
 });
 
+exports.createUser = functions.auth.user().onCreate((user) => {
+  console.log(user);
+
+})
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

@@ -11,7 +11,17 @@
                   <v-layout justify-center>
                     <label for="file_photo">
                       <img :src="uploadImage" style="width: 150px; border-radius: 50%;" />
-                      <input type="file" style="display: none;" @change="onFileChange" />
+                      <br />
+                      <label class="upload-img-btn">
+                        プロフィール画像を変更する
+                        <input
+                          type="file"
+                          name="image"
+                          id="image_file"
+                          style="display: none;"
+                          @change="onFileChange"
+                        />
+                      </label>
                     </label>
                   </v-layout>
                 </v-col>
@@ -47,6 +57,22 @@
     </v-layout>
   </v-row>
 </template>
+
+<style scoped>
+.upload-img-btn {
+  margin: 22px auto;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  max-width: 130px;
+  text-align: center;
+  display: block;
+  background-color: #f1f1f1;
+  color: #73a9ff;
+  box-shadow: 0 2px 6px rgba(146, 146, 146, 0.8);
+  cursor: pointer;
+}
+</style>
 
 <script>
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
