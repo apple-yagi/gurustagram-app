@@ -50,21 +50,29 @@ export default {
 
   updateProfile(displayName, imageFile) {
     var photoURL = null
+    var user = firebase.auth().currentUser;
 
     if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
       var storageRef = firebase.storage().ref();
-      var moutainsRef = storageRef.child(imageFile.name);
+      var moutainsRef = storageRef.child(user.uid + "/" + imageFile.name);
+
+      console.log("putImageToStorage")
 
       moutainsRef.put(imageFile).then(() => {
-        moutainsRef.getDownloadURL().then(url => {
-          photoURL = url
-        })
+        console.log("put success")
+        moutainsRef.getDownloadURL()
+          .then(url => {
+            console.log("getDownload")
+            photoURL = url
+          })
+          .catch(error => {
+            console.log(error)
+          })
       })
-    } else {
+    }
+    else {
       photoURL = imageFile
     }
-
-    var user = firebase.auth().currentUser;
 
     return new Promise((resolve, reject) => {
       user.updateProfile({
@@ -72,7 +80,7 @@ export default {
         photoURL: photoURL
       })
         .then(() => {
-          resolve()
+          resolve(user)
         })
         .catch(error => {
           reject(error)
@@ -90,6 +98,25 @@ export default {
         })
         .catch(err => {
           reject(err)
+        })
+    })
+  },
+
+  setUserInfo(user) {
+    return new Promise((resolve, reject) => {
+      firebase
+        .database()
+        .ref("/users/" + user.uid)
+        .set({
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL
+        })
+        .then(user => {
+          resolve(user)
+        })
+        .catch(error => {
+          reject(error)
         })
     })
   },
