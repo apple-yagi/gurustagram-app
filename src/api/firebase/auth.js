@@ -50,10 +50,12 @@ export default {
 
   async updateProfile(displayName, imageFile) {
     var photoURL = null
+    var imageFileName = null
     var user = firebase.auth().currentUser;
 
     if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
-      var photoURL = await this.putImageToStorage(user, imageFile)
+      var photoURL = this.putImageToStorage(user, imageFile)
+      var imageFileName = imageFile.name
     }
     else {
       photoURL = imageFile
@@ -65,7 +67,7 @@ export default {
         photoURL: photoURL
       })
         .then(() => {
-          this.setUserInfo(user, imageFile)
+          this.setUserInfo(user, imageFileName)
             .then(() => {
               resolve()
             })
@@ -96,7 +98,7 @@ export default {
     })
   },
 
-  setUserInfo(user, imageFile) {
+  setUserInfo(user, imageFileName) {
     return new Promise((resolve, reject) => {
       firebase
         .database()
@@ -104,7 +106,7 @@ export default {
         .set({
           name: user.displayName,
           email: user.email,
-          photoName: imageFile.name,
+          photoName: imageFileName,
           photoURL: user.photoURL
         })
         .then(() => {

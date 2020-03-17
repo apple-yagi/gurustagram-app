@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-const databaseRef = admin.database().ref();
+const database = admin.database();
 const bucket = admin.storage().bucket();
 
 exports.countShops = functions.database.ref(`/shops`).onWrite((change, context) => {
@@ -16,14 +16,13 @@ exports.countShops = functions.database.ref(`/shops`).onWrite((change, context) 
 
 exports.deleteUser = functions.auth.user().onDelete(user => {
   const uid = user.uid
-  const userDatabaseRef = databaseRef.child(`/users/${uid}`);
-  const userPhotoNameDatabaseRef = databaseRef.child(`/users/${uid}/photoName`);
-  userPhotoNameDatabaseRef.once('value')
-    .then(snapshot => {
+  const userDatabaseRef = database.ref(`/users/${uid}`);
+  const userPhotoNameDatabaseRef = database.ref(`/users/${uid}/photoName`);
+  return userPhotoNameDatabaseRef.once('value', snapshot => {
+    if (snapshot.val()) {
       const photoName = snapshot.val()
       bucket.file(`${uid}/${photoName}`).delete()
-    })
-    .finally(() => {
-      return userDatabaseRef.set(null)
-    })
+    }
+    return userDatabaseRef.set(null)
+  })
 })
