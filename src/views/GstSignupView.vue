@@ -29,6 +29,9 @@
 
                   <v-col cols="12" xs="8" sm="5">
                     <v-layout justify-center>
+                      <GstAlertMessage :message="message" :alert-type="alertType" />
+                    </v-layout>
+                    <v-layout justify-center>
                       <v-text-field label="ユーザー名" v-model="name" :rules="nameRules" required></v-text-field>
                     </v-layout>
                     <v-layout justify-center>
@@ -127,13 +130,13 @@ export default {
                 });
               })
               .catch(error => {
-                this.message = error;
+                this.message = "profile登録エラー";
                 this.alertType = "error";
                 this.loading = false;
               });
           })
           .catch(err => {
-            this.message = err;
+            this.message = "ユーザー登録に失敗しました";
             this.alertType = "error";
             this.loading = false;
           });
