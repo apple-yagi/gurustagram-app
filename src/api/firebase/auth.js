@@ -54,7 +54,10 @@ export default {
     var user = firebase.auth().currentUser;
 
     if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
-      var photoURL = this.putImageToStorage(user, imageFile)
+      await this.putImageToStorage(user, imageFile)
+        .then(url => {
+          photoURL = url
+        })
       var imageFileName = imageFile.name
     }
     else {
@@ -62,6 +65,7 @@ export default {
     }
 
     return new Promise((resolve, reject) => {
+      console.log(photoURL)
       user.updateProfile({
         displayName: displayName,
         photoURL: photoURL
@@ -72,11 +76,13 @@ export default {
               resolve()
             })
             .catch(error => {
-              reject(error)
+              console.log("setUserInfo Error")
+              reject(console.log(error))
             })
         })
         .catch(error => {
-          reject(error)
+          console.log("updateProfile Error")
+          reject(console.log(error))
         })
     })
   },
@@ -92,7 +98,8 @@ export default {
             resolve(url)
           })
           .catch(error => {
-            reject(error)
+            console.log("putImageToStorage Error")
+            reject(console.log(error))
           })
       })
     })
