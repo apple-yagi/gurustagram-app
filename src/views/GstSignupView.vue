@@ -1,61 +1,63 @@
 <template>
-  <v-row>
-    <v-layout justify-center>
-      <v-col cols="12" md="11" lg="8">
-        <v-card>
-          <v-card-title class="headline">ユーザー登録</v-card-title>
-          <v-container>
-            <v-form ref="form" v-model="valid">
-              <v-row>
-                <v-col cols="12" xs="10" sm="6">
-                  <v-layout justify-center>
-                    <label for="file_photo">
-                      <img :src="uploadImage" style="width: 150px; border-radius: 50%;" />
-                      <br />
-                      <label class="upload-img-btn">
-                        プロフィール画像を変更する
-                        <input
-                          type="file"
-                          name="image"
-                          id="image_file"
-                          style="display: none;"
-                          @change="onFileChange"
-                        />
+  <v-container fluid fill-height>
+    <v-row class="ma-auto">
+      <v-layout justify-center>
+        <v-col cols="12" md="11" lg="8">
+          <v-card>
+            <v-card-title class="headline">ユーザー登録</v-card-title>
+            <v-container>
+              <v-form ref="form" v-model="valid">
+                <v-row>
+                  <v-col cols="12" xs="10" sm="6">
+                    <v-layout justify-center>
+                      <label for="file_photo">
+                        <img :src="uploadImage" style="width: 150px; border-radius: 50%;" />
+                        <br />
+                        <label class="upload-img-btn">
+                          プロフィール画像を変更する
+                          <input
+                            type="file"
+                            name="image"
+                            id="image_file"
+                            style="display: none;"
+                            @change="onFileChange"
+                          />
+                        </label>
                       </label>
-                    </label>
-                  </v-layout>
-                </v-col>
+                    </v-layout>
+                  </v-col>
 
-                <v-col cols="12" xs="8" sm="5">
-                  <v-layout justify-center>
-                    <v-text-field label="ユーザー名" v-model="name" :rules="nameRules" required></v-text-field>
-                  </v-layout>
-                  <v-layout justify-center>
-                    <v-text-field label="Email" v-model="email" :rules="emailRules" required></v-text-field>
-                  </v-layout>
-                  <v-layout justify-center>
-                    <v-text-field
-                      v-model="password"
-                      :rules="passwordRules"
-                      label="Password"
-                      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                      :type="showPassword ? 'text' : 'password'"
-                      @click:append="showPassword = !showPassword"
-                      required
-                    ></v-text-field>
-                  </v-layout>
-                </v-col>
+                  <v-col cols="12" xs="8" sm="5">
+                    <v-layout justify-center>
+                      <v-text-field label="ユーザー名" v-model="name" :rules="nameRules" required></v-text-field>
+                    </v-layout>
+                    <v-layout justify-center>
+                      <v-text-field label="Email" v-model="email" :rules="emailRules" required></v-text-field>
+                    </v-layout>
+                    <v-layout justify-center>
+                      <v-text-field
+                        v-model="password"
+                        :rules="passwordRules"
+                        label="Password"
+                        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="showPassword ? 'text' : 'password'"
+                        @click:append="showPassword = !showPassword"
+                        required
+                      ></v-text-field>
+                    </v-layout>
+                  </v-col>
 
-                <v-layout justify-end>
-                  <v-btn class="mr-5" :disabled="!valid" :loading="loading" @click="signUp">登録</v-btn>
-                </v-layout>
-              </v-row>
-            </v-form>
-          </v-container>
-        </v-card>
-      </v-col>
-    </v-layout>
-  </v-row>
+                  <v-layout justify-end>
+                    <v-btn class="mr-5" :disabled="!valid" :loading="loading" @click="signUp">登録</v-btn>
+                  </v-layout>
+                </v-row>
+              </v-form>
+            </v-container>
+          </v-card>
+        </v-col>
+      </v-layout>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>
@@ -117,23 +119,22 @@ export default {
         this.alertType = null;
 
         Auth.signUp(this.email, this.password)
-          .then(user => {
+          .then(res => {
             Auth.updateProfile(this.name, this.imageFile)
               .then(() => {
-                this.$store.dispatch("setCurrentUser").then(() => {
-                  this.$router.push({ path: "/account" });
-                });
+                this.$router.push({ path: "/account" });
               })
               .catch(error => {
                 this.message = error;
                 this.alertType = "error";
+              })
+              .finally(() => {
+                this.loading = false;
               });
           })
           .catch(err => {
             this.message = err;
             this.alertType = "error";
-          })
-          .finally(() => {
             this.loading = false;
           });
       }

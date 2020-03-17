@@ -48,27 +48,12 @@ export default {
     })
   },
 
-  updateProfile(displayName, imageFile) {
+  async updateProfile(displayName, imageFile) {
     var photoURL = null
     var user = firebase.auth().currentUser;
 
     if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
-      var storageRef = firebase.storage().ref();
-      var moutainsRef = storageRef.child(user.uid + "/" + imageFile.name);
-
-      console.log("putImageToStorage")
-
-      moutainsRef.put(imageFile).then(() => {
-        console.log("put success")
-        moutainsRef.getDownloadURL()
-          .then(url => {
-            console.log("getDownload")
-            photoURL = url
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      })
+      var photoURL = await this.putImageToStorage(user, imageFile)
     }
     else {
       photoURL = imageFile
@@ -80,7 +65,50 @@ export default {
         photoURL: photoURL
       })
         .then(() => {
-          resolve(user)
+          this.setUserInfo(user, imageFile)
+            .then(() => {
+              resolve()
+            })
+            .catch(error => {
+              reject(error)
+            })
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+
+  putImageToStorage(user, imageFile) {
+    var storageRef = firebase.storage().ref();
+    var moutainsRef = storageRef.child(user.uid + "/" + imageFile.name);
+
+    return new Promise((resolve, reject) => {
+      moutainsRef.put(imageFile).then(() => {
+        moutainsRef.getDownloadURL()
+          .then(url => {
+            resolve(url)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    })
+  },
+
+  setUserInfo(user, imageFile) {
+    return new Promise((resolve, reject) => {
+      firebase
+        .database()
+        .ref("/users/" + user.uid)
+        .set({
+          name: user.displayName,
+          email: user.email,
+          photoName: imageFile.name,
+          photoURL: user.photoURL
+        })
+        .then(() => {
+          resolve()
         })
         .catch(error => {
           reject(error)
@@ -98,25 +126,6 @@ export default {
         })
         .catch(err => {
           reject(err)
-        })
-    })
-  },
-
-  setUserInfo(user) {
-    return new Promise((resolve, reject) => {
-      firebase
-        .database()
-        .ref("/users/" + user.uid)
-        .set({
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL
-        })
-        .then(user => {
-          resolve(user)
-        })
-        .catch(error => {
-          reject(error)
         })
     })
   },

@@ -1,7 +1,7 @@
 <template>
   <v-card v-if="User">
     <v-card-title>
-      <img :src="User.photoURL" width="30" height="30" />
+      <img :src="User.photoURL" width="30" height="30" style="border-radius:50%;" />
       <span class="ml-2">{{ User.name }}</span>
     </v-card-title>
     <v-layout justify-center>
