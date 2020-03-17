@@ -12,9 +12,9 @@
         </div>
       </v-col>
     </v-row>
-    <!-- <v-layout justify-end>
+    <v-layout justify-end>
       <v-btn class="ml-5" @click="signOut">サインアウト</v-btn>
-    </v-layout>-->
+    </v-layout>
   </v-container>
 </template>
 
