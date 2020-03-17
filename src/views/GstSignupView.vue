@@ -122,13 +122,13 @@ export default {
           .then(res => {
             Auth.updateProfile(this.name, this.imageFile)
               .then(() => {
-                this.$router.push({ path: "/account" });
+                this.$store.dispatch("setCurrentUser").then(() => {
+                  this.$router.push({ path: "/account" });
+                });
               })
               .catch(error => {
                 this.message = error;
                 this.alertType = "error";
-              })
-              .finally(() => {
                 this.loading = false;
               });
           })
