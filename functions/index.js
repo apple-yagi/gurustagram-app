@@ -21,8 +21,12 @@ exports.deleteUser = functions.auth.user().onDelete(user => {
   return userPhotoNameDatabaseRef.once('value', snapshot => {
     if (snapshot.val()) {
       const photoName = snapshot.val()
-      bucket.file(`${uid}/${photoName}`).delete()
+      bucket.file(`${uid}/${photoName}`).delete().then(() => {
+        return userDatabaseRef.set(null)
+      })
     }
-    return userDatabaseRef.set(null)
+    else {
+      return userDatabaseRef.set(null)
+    }
   })
 })

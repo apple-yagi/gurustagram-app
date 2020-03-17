@@ -65,7 +65,6 @@ export default {
     }
 
     return new Promise((resolve, reject) => {
-      console.log(photoURL)
       user.updateProfile({
         displayName: displayName,
         photoURL: photoURL
