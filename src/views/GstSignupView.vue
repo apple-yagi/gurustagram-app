@@ -115,31 +115,31 @@ export default {
   },
 
   methods: {
-    signUp() {
+    async signUp() {
       if (this.$refs.form.validate()) {
         this.loading = true;
         this.message = null;
         this.alertType = null;
 
-        Auth.signUp(this.email, this.password)
-          .then(res => {
-            Auth.updateProfile(this.name, this.imageFile)
-              .then(() => {
-                this.$store.dispatch("setCurrentUser").then(() => {
-                  this.$router.push({ path: "/account" });
-                });
-              })
-              .catch(error => {
-                this.message = "profile登録エラー";
-                this.alertType = "error";
-                this.loading = false;
-              });
-          })
-          .catch(err => {
-            this.message = "ユーザー登録に失敗しました";
-            this.alertType = "error";
-            this.loading = false;
-          });
+        // ユーザー登録
+        Auth.signUp(this.email, this.password).catch(err => {
+          this.message = "ユーザー登録に失敗しました";
+          this.alertType = "error";
+          this.loading = false;
+        });
+
+        // ユーザーの名前、プロフィール画像を登録
+        await Auth.updateProfile(this.name, this.imageFile).catch(error => {
+          this.message = "profile登録エラー";
+          this.alertType = "error";
+          this.loading = false;
+        });
+
+        // ユーザー情報を取得
+        await this.$store.dispatch("setCurrentUser");
+
+        // マイページへ遷移
+        this.$router.push({ path: "/account" });
       }
     },
 
