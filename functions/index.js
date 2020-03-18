@@ -15,12 +15,12 @@ exports.countShops = functions.database.ref(`/shops`).onWrite((change, context) 
 });
 
 exports.deleteUser = functions.auth.user().onDelete(user => {
-  const uid = user.uid
+  const uid = user.uid;
   const userDatabaseRef = database.ref(`/users/${uid}`);
   const userPhotoNameDatabaseRef = database.ref(`/users/${uid}/photoName`);
   return userPhotoNameDatabaseRef.once('value', snapshot => {
     if (snapshot.val()) {
-      const photoName = snapshot.val()
+      const photoName = snapshot.val();
       bucket.file(`${uid}/${photoName}`).delete().then(() => {
         return userDatabaseRef.set(null)
       })
@@ -29,4 +29,4 @@ exports.deleteUser = functions.auth.user().onDelete(user => {
       return userDatabaseRef.set(null)
     }
   })
-})
+});

@@ -87,6 +87,7 @@ const REGEX = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-
 
 export default {
   name: "Signup",
+
   components: {
     GstAlertMessage
   },
@@ -122,7 +123,7 @@ export default {
         this.alertType = null;
 
         // ユーザー登録
-        Auth.signUp(this.email, this.password).catch(err => {
+        await Auth.signUp(this.email, this.password).catch(err => {
           this.message = "ユーザー登録に失敗しました";
           this.alertType = "error";
           this.loading = false;
