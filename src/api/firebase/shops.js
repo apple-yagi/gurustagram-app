@@ -36,30 +36,43 @@ export default {
         reject("ユーザーの投稿登録に失敗しました")
       })
 
-    // ユーザーの投稿数を取得
-    await userRef.child("/posted_count")
-      .on('value', snapshot => {
-        if (snapshot.val()) {
-          console.log(snapshot.val())
-          user_posted_count = snapshot.val()
-        }
-      })
-
-    // ユーザーの投稿数を更新
-    await userRef.child("/posted_count")
-      .set(user_posted_count)
-      .catch(err => {
-        reject("投稿数の更新に失敗しました")
-      })
-
     return Promise.resolve("投稿しました")
   },
 
-  // loadUserPostedShop(user) {
-  //   return new Promise((resolve, reject) => {
-  //     var userRef = firebase.database().ref("users/" + user.id + "/posted")
+  async loadUserPostedShops(user) {
+    const shopsRef = firebase.database().ref("shops/");
 
-  //     userRef.
-  //   })
-  // }
+    // ユーザーが投稿した記事のIDを取得
+    var shopIDList = await this.loadUserPostedShopsID(user)
+
+    // ユーザーが投稿した記事のデータを取得
+    var shopList = []
+
+    for (let i = 0; i < shopIDList.length; i++) {
+      firebase.database().ref("shops/" + shopIDList[i])
+        .on("value", snapshot => {
+          shopList.push(snapshot.val())
+        })
+    }
+
+    return Promise.resolve(shopList)
+  },
+
+  loadUserPostedShopsID(user) {
+    var shopIDList = []
+
+    firebase.database().ref("users/" + user.uid + "/posted")
+      .on('value', snapshot => {
+        for (let post in snapshot.val()) {
+          shopIDList.push(snapshot.val()[post])
+        }
+      })
+
+    if (shopIDList) {
+      return Promise.resolve(shopIDList)
+    } else {
+      return Promise.reject(null)
+    }
+  },
+
 }

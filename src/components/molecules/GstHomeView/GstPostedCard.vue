@@ -1,8 +1,12 @@
 <template>
-  <v-card v-if="User">
-    <v-card-title>
+  <v-card>
+    <v-card-title v-if="User">
       <img :src="User.photoURL" width="30" height="30" style="border-radius:50%;" />
       <span class="ml-2">{{ User.name }}</span>
+    </v-card-title>
+    <v-card-title v-else>
+      <img :src="noUser.photoURL" width="30" height="30" style="border-radius:50%;" />
+      <span class="ml-2">{{ noUser.name }}</span>
     </v-card-title>
     <v-layout justify-center>
       <v-img
@@ -55,14 +59,25 @@ export default {
 
   data() {
     return {
-      User: null
+      User: null,
+      noUser: {
+        name: null,
+        photoURL: null
+      }
     };
   },
 
   created() {
-    Auth.getUserInfo(this.Shop.uid).then(user => {
-      this.User = user;
-    });
+    Auth.getUserInfo(this.Shop.uid)
+      .then(user => {
+        this.User = user;
+      })
+      .catch(err => {
+        this.noUser = {
+          name: err,
+          photoURL: process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT
+        };
+      });
   },
 
   methods: {
