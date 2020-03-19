@@ -18,65 +18,18 @@
         cols="12"
         xs="12"
         sm="6"
-        md="4"
-        lg="3"
+        md="6"
+        lg="4"
         v-for="(shop, index) in postedShops"
         :key="index"
       >
-        <v-card @click="openDialog(shop)">
-          <v-layout justify-center>
-            <v-img class="shop_img" :src="shop.image_url.shop_image1">
-              <v-container fill-height fluid>
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span class="headline white--text">ぐるなび情報</span>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-img>
-          </v-layout>
-          <v-card-text>
-            <h4>コメント</h4>
-            <span class="ml-3">{{ shop.description }}</span>
-          </v-card-text>
-        </v-card>
-
-        <v-dialog
-          v-model="dialog"
+        <GstPostedCard :Shop="shop" v-on:openDialog="openDialog(shop)" />
+        <GstPostedDialog
           v-if="currentShop == shop"
-          transition="dialog-bottom-transition"
-          max-width="600px"
-          scrollable
-          activator
-        >
-          <v-card @click="dialog = false">
-            <v-layout>
-              <v-img :src="currentShop.image_url.shop_image1">
-                <v-container>
-                  <v-flex xs12 align-end flexbox>
-                    <span class="headline white--text">ぐるなび情報</span>
-                  </v-flex>
-                </v-container>
-              </v-img>
-              <v-img
-                v-if="currentShop.image_url.shop_image2"
-                class="dialog-img"
-                :src="currentShop.image_url.shop_image2"
-              ></v-img>
-            </v-layout>
-
-            <v-card-title>{{ currentShop.name }}</v-card-title>
-            <hr />
-            <v-card-text>
-              <h3 class="pt-1">店舗情報</h3>
-              <span>{{ currentShop.pr.pr_long }}</span>
-              <br />
-              <span>{{ currentShop.address }}</span>
-              <br />
-              <span>Tel : {{ currentShop.tel }}</span>
-            </v-card-text>
-          </v-card>
-        </v-dialog>
+          :current-shop="currentShop"
+          :dialog="dialog"
+          v-on:closeDialog="closeDialog()"
+        />
       </v-col>
     </v-row>
 
@@ -121,10 +74,17 @@
 </style>
 
 <script>
+import GstPostedCard from "@/components/molecules/GstPostedCard";
+import GstPostedDialog from "@/components/molecules/GstPostedDialog";
 import ShopsDB from "@/api/firebase/shops";
 
 export default {
   name: "Account",
+
+  components: {
+    GstPostedCard,
+    GstPostedDialog
+  },
 
   data() {
     return {
@@ -160,6 +120,11 @@ export default {
     openDialog: function(Shop) {
       this.currentShop = Shop;
       this.dialog = true;
+    },
+
+    closeDialog() {
+      this.currentShop = null;
+      this.dialog = false;
     }
   }
 };
