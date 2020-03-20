@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-row v-if="user">
       <v-col cols="4">
         <v-layout justify-center>
@@ -7,11 +7,11 @@
         </v-layout>
       </v-col>
       <v-col cols="8">
-        <div class="mt-7">
-          <h2>{{ user.displayName }}</h2>
-        </div>
+        <h2 class="display_name" style="vertical-align: middle;">{{ user.displayName }}</h2>
       </v-col>
     </v-row>
+
+    <hr />
 
     <v-row>
       <v-col
@@ -22,6 +22,7 @@
         lg="4"
         v-for="(shop, index) in postedShops"
         :key="index"
+        style="padding: 0;"
       >
         <GstPostedCard :Shop="shop" v-on:openDialog="openDialog(shop)" />
         <GstPostedDialog
@@ -32,7 +33,7 @@
         />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <style scoped>
@@ -47,10 +48,18 @@
   object-fit: cover;
 }
 
+.display_name {
+  font-size: 2.5rem;
+}
+
 @media screen and (max-width: 480px) {
   .account_img {
     width: 60px;
     height: 60px;
+  }
+
+  .display_name {
+    font-size: 1.5rem;
   }
 }
 
