@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid fill-height>
     <GstLoginForm :onlogin="handleLogin" />
   </v-container>
 </template>
