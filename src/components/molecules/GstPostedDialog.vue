@@ -8,16 +8,25 @@
   >
     <v-card @click="closeDialog()">
       <v-layout>
-        <v-img class="white--text responsive-dialog-img" :src="currentShop.image_url.shop_image1">
-          <v-container fill-height fluid>
-            <v-layout fill-height>
+        <v-img
+          class="white--text responsive-dialog-img"
+          :src="currentShop.image_url.shop_image1"
+          style="max-height: 250px;"
+        >
+          <v-container fluid>
+            <v-layout>
               <v-flex xs12 align-end flexbox>
                 <span class="headline white--text">ぐるなび情報</span>
               </v-flex>
             </v-layout>
           </v-container>
         </v-img>
-        <v-img class="responsive-dialog-img" :src="currentShop.image_url.shop_image2"></v-img>
+        <v-img
+          v-if="currentShop.image_url.shop_image2"
+          class="responsive-dialog-img"
+          :src="currentShop.image_url.shop_image2"
+          style="max-height: 250px;"
+        ></v-img>
       </v-layout>
       <v-card-title>{{ currentShop.name }}</v-card-title>
       <hr />
