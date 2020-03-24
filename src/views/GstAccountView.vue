@@ -6,10 +6,21 @@
           <img class="account_img" :src="user.photoURL" />
         </v-layout>
       </v-col>
-      <v-col cols="8">
-        <h2 class="display_name" style="vertical-align: middle;">{{ user.displayName }}</h2>
+      <v-col cols="4">
+        <h2 class="display_name" style="vertical-align: middle;">
+          {{ user.displayName }}
+          <v-btn @click="openEditProfileDialog" icon>
+            <v-icon>mdi-settings</v-icon>
+          </v-btn>
+        </h2>
       </v-col>
     </v-row>
+
+    <GstEditProfile
+      :dialog="editProfileDialog"
+      :user="user"
+      v-on:closeEditProfileDialog="closeEditProfileDialog()"
+    />
 
     <hr />
 
@@ -81,6 +92,7 @@
 <script>
 import GstPostedCard from "@/components/molecules/GstPostedCard";
 import GstPostedDialog from "@/components/molecules/GstPostedDialog";
+import GstEditProfile from "@/components/molecules/GstAccountView/GstEditProfile";
 import ShopsDB from "@/api/firebase/shops";
 
 export default {
@@ -88,7 +100,8 @@ export default {
 
   components: {
     GstPostedCard,
-    GstPostedDialog
+    GstPostedDialog,
+    GstEditProfile
   },
 
   data() {
@@ -96,7 +109,8 @@ export default {
       message: null,
       postedShops: null,
       dialog: false,
-      currentShop: null
+      currentShop: null,
+      editProfileDialog: false
     };
   },
 
@@ -130,6 +144,14 @@ export default {
     closeDialog() {
       this.currentShop = null;
       this.dialog = false;
+    },
+
+    openEditProfileDialog() {
+      this.editProfileDialog = true;
+    },
+
+    closeEditProfileDialog() {
+      this.editProfileDialog = false;
     }
   }
 };

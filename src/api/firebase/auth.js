@@ -75,13 +75,11 @@ export default {
               resolve()
             })
             .catch(error => {
-              console.log("setUserInfo Error")
-              reject(console.log(error))
+              reject(error)
             })
         })
         .catch(error => {
-          console.log("updateProfile Error")
-          reject(console.log(error))
+          reject(error)
         })
     })
   },
@@ -98,7 +96,7 @@ export default {
           })
           .catch(error => {
             console.log("putImageToStorage Error")
-            reject(console.log(error))
+            reject(error)
           })
       })
     })
