@@ -1,6 +1,8 @@
 <template>
-  <v-container fluid>
-    <h3 class="ml-5 pt-3" style="color: #a1887f;">投稿するお店の店名を入力してください</h3>
+  <v-container>
+    <v-layout justify-center>
+      <h3 class="mt-3" style="color: #a1887f;">投稿するお店の店名を入力してください</h3>
+    </v-layout>
     <v-layout justify-center>
       <GstSearchForm :search="handleSearch" />
     </v-layout>
