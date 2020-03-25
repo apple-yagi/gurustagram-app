@@ -1,18 +1,27 @@
 <template>
   <div>
-    <v-row v-if="user">
+    <v-row v-if="user" align="center">
       <v-col cols="4">
         <v-layout justify-center>
           <img class="account_img" :src="user.photoURL" />
         </v-layout>
       </v-col>
-      <v-col cols="4">
-        <h2 class="display_name" style="vertical-align: middle;">
-          {{ user.displayName }}
-          <v-btn @click="openEditProfileDialog" icon>
-            <v-icon>mdi-settings</v-icon>
-          </v-btn>
-        </h2>
+      <v-col cols="8">
+        <v-row>
+          <v-col cols="6">
+            <v-layout justify-center>
+              <h2 class="display_name" style="vertical-align: middle;">{{ user.displayName }}</h2>
+            </v-layout>
+          </v-col>
+          <v-col cols="2" md="7">
+            <v-layout justify-center>
+              <v-btn @click="openEditProfileDialog" icon>
+                <v-icon>mdi-settings</v-icon>
+                <span class="hidden-sm-and-down">プロフィール編集</span>
+              </v-btn>
+            </v-layout>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
 

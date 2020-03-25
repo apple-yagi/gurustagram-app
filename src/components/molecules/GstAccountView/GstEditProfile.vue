@@ -12,8 +12,8 @@
 
       <v-container>
         <v-form ref="form" v-model="valid">
-          <v-row>
-            <v-col cols="12" xs="10" sm="6">
+          <v-row align="center">
+            <v-col cols="12" sm="6">
               <v-layout justify-center>
                 <label for="file_photo">
                   <img :src="uploadImage" style="width: 150px; border-radius: 50%;" />
@@ -32,20 +32,29 @@
               </v-layout>
             </v-col>
 
-            <v-col cols="12" sm="5">
-              <v-layout v-if="message" justify-center>
-                <GstAlertMessage :message="message" :alert-type="alertType" />
-              </v-layout>
-              <v-layout justify-center>
+            <v-layout justify-center>
+              <v-col cols="8" md="10">
+                <v-layout v-if="message" justify-center>
+                  <GstAlertMessage :message="message" :alert-type="alertType" />
+                </v-layout>
+                <!-- <v-layout justify-center> -->
                 <v-text-field label="ユーザー名" v-model="displayName" :rules="nameRules" required></v-text-field>
+                <!-- </v-layout> -->
+              </v-col>
+            </v-layout>
+
+            <v-col cols="12">
+              <v-layout justify-end>
+                <v-card-actions>
+                  <v-btn
+                    class="mr-5"
+                    :disabled="!valid"
+                    :loading="loading"
+                    @click="updateProfile"
+                  >登録</v-btn>
+                </v-card-actions>
               </v-layout>
             </v-col>
-
-            <v-layout justify-end>
-              <v-card-actions>
-                <v-btn class="mr-5" :disabled="!valid" :loading="loading" @click="updateProfile">登録</v-btn>
-              </v-card-actions>
-            </v-layout>
           </v-row>
         </v-form>
       </v-container>

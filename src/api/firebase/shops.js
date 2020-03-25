@@ -46,8 +46,8 @@ export default {
     // ユーザーが投稿した記事のデータを取得
     var shopList = []
 
-    for (let i = 0; i < shopIDList.length; i++) {
-      firebase.database().ref("shops/" + shopIDList[i])
+    for (let shopID in shopIDList) {
+      firebase.database().ref("shops/" + shopIDList[shopID])
         .on("value", snapshot => {
           shopList.push(snapshot.val())
         })
@@ -57,19 +57,11 @@ export default {
   },
 
   loadUserPostedShopsID(user) {
-    var shopIDList = []
-
-    firebase.database().ref("users/" + user.uid + "/posted")
-      .on('value', snapshot => {
-        for (let post in snapshot.val()) {
-          shopIDList.push(snapshot.val()[post])
-        }
-      })
-
-    if (shopIDList) {
-      return Promise.resolve(shopIDList)
-    } else {
-      return Promise.reject(null)
-    }
+    return new Promise(resolve => {
+      firebase.database().ref("users/" + user.uid + "/posted")
+        .on('value', snapshot => {
+          resolve(snapshot.val())
+        })
+    })
   }
 }
