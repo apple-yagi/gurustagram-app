@@ -33,7 +33,7 @@
             </v-col>
 
             <v-col cols="12" sm="5">
-              <v-layout justify-center>
+              <v-layout v-if="message" justify-center>
                 <GstAlertMessage :message="message" :alert-type="alertType" />
               </v-layout>
               <v-layout justify-center>
@@ -128,13 +128,14 @@ export default {
       this.$emit("closeEditProfileDialog");
     },
 
-    updateProfile() {
+    async updateProfile() {
       this.loading = true;
       this.message = "";
       this.alertType = "";
 
       Auth.updateProfile(this.displayName, this.imageFile)
         .then(() => {
+          this.$store.dispatch("setCurrentUser");
           this.closeEditProfileDialog();
         })
         .catch(err => {

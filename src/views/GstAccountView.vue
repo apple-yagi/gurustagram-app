@@ -93,7 +93,6 @@
 import GstPostedCard from "@/components/molecules/GstPostedCard";
 import GstPostedDialog from "@/components/molecules/GstPostedDialog";
 import GstEditProfile from "@/components/molecules/GstAccountView/GstEditProfile";
-import ShopsDB from "@/api/firebase/shops";
 
 export default {
   name: "Account",
@@ -107,7 +106,6 @@ export default {
   data() {
     return {
       message: null,
-      postedShops: null,
       dialog: false,
       currentShop: null,
       editProfileDialog: false
@@ -117,11 +115,15 @@ export default {
   computed: {
     user() {
       return this.$store.state.currentUser;
+    },
+
+    postedShops() {
+      return this.$store.state.currentUserPostedShops;
     }
   },
 
-  async created() {
-    this.postedShops = await ShopsDB.loadUserPostedShops(this.user);
+  mounted() {
+    this.$store.dispatch("setCurrentUserPostedShops", this.user);
   },
 
   methods: {

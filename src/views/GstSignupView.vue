@@ -27,7 +27,7 @@
                     </v-layout>
                   </v-col>
 
-                  <v-col cols="12" xs="8" sm="5">
+                  <v-col cols="12" xs="8" sm="5" xl="7">
                     <v-layout justify-center>
                       <GstAlertMessage :message="message" :alert-type="alertType" />
                     </v-layout>

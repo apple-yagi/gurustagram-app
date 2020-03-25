@@ -37,5 +37,15 @@ export default {
       .catch(err => {
         throw err
       })
+  },
+
+  setCurrentUserPostedShops: ({ commit }, user) => {
+    return Shops.loadUserPostedShops(user)
+      .then(shops => {
+        commit(types.CURRENT_USER_POSTED_SHOPS, shops)
+      })
+      .catch(err => {
+        throw err
+      })
   }
 }

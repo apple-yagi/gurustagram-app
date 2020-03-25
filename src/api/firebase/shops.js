@@ -26,7 +26,6 @@ export default {
         reject("投稿に失敗しました")
       })
 
-    var user_posted_count = 0;
     const userRef = firebase.database().ref("users/" + user.uid)
 
     // 投稿したユーザーにshopのidを登録
@@ -40,7 +39,6 @@ export default {
   },
 
   async loadUserPostedShops(user) {
-    const shopsRef = firebase.database().ref("shops/");
 
     // ユーザーが投稿した記事のIDを取得
     var shopIDList = await this.loadUserPostedShopsID(user)
@@ -73,6 +71,5 @@ export default {
     } else {
       return Promise.reject(null)
     }
-  },
-
+  }
 }

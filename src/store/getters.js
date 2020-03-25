@@ -5,5 +5,9 @@ export default {
       Shops.push(state.postedShops[Shop])
     }
     return Shops.reverse();
+  },
+
+  getCurrentUser(state) {
+    return state.currentUser;
   }
 }
