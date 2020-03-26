@@ -147,7 +147,7 @@ export default {
         });
     },
 
-    openDialog: function(Shop) {
+    openDialog(Shop) {
       this.currentShop = Shop;
       this.dialog = true;
     },

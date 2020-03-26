@@ -107,7 +107,7 @@ export default {
       firebase
         .database()
         .ref("/users/" + user.uid)
-        .set({
+        .update({
           name: user.displayName,
           email: user.email,
           photoName: imageFileName,
