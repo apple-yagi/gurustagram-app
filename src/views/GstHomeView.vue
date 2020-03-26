@@ -54,8 +54,7 @@ export default {
       dialog: false,
       message: null,
       alertType: "error",
-      postedShops: null,
-      reverseShops: []
+      postedShops: []
     };
   },
 
@@ -72,7 +71,7 @@ export default {
       .on("value", snapshot => {
         if (snapshot.val()) {
           for (let shop in snapshot.val()) {
-            this.reverseShops.push(snapshot.val()[shop]);
+            this.postedShops.push(snapshot.val()[shop]);
           }
         }
       });
@@ -92,7 +91,7 @@ export default {
 
   computed: {
     Shops() {
-      return this.reverseShops.reverse();
+      return this.postedShops.reverse();
     }
   }
 };
