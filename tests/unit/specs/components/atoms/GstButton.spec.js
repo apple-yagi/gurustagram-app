@@ -84,4 +84,22 @@ describe('GstButton', () => {
       })
     })
   })
+
+  describe('slot', () => {
+    describe('コンテンツ挿入あり', () => {
+      it('挿入されていること', () => {
+        const button = shallowMount(GstButton, {
+          slots: { default: '<p>Hello World</p>' }
+        })
+        expect(button.text()).toBe('Hello World')
+      })
+    })
+
+    describe('コンテンツ挿入なし', () => {
+      it('挿入されていないこと', () => {
+        const button = shallowMount(GstButton)
+        expect(button.text()).toBe('')
+      })
+    })
+  })
 })
