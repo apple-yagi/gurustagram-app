@@ -4,7 +4,12 @@
       <v-list-item class="px-2">
         <v-list-item-avatar>
           <v-btn to="/account" icon>
-            <img v-if="currentUser" :src="currentUser.photoURL" style="width: 40px;" />
+            <img
+              v-if="currentUser"
+              :src="currentUser.photoURL"
+              alt="userImage"
+              style="width: 40px;"
+            />
             <v-icon v-else>mdi-account</v-icon>
           </v-btn>
         </v-list-item-avatar>

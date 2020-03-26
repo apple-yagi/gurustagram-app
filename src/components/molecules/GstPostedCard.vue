@@ -1,17 +1,24 @@
 <template>
   <v-card>
     <v-card-title v-if="User">
-      <img :src="User.photoURL" width="30" height="30" style="border-radius:50%;" />
+      <img :src="User.photoURL" alt="user Image" width="30" height="30" style="border-radius:50%;" />
       <span class="ml-2">{{ User.name }}</span>
     </v-card-title>
     <v-card-title v-else>
-      <img :src="noUser.photoURL" width="30" height="30" style="border-radius:50%;" />
+      <img
+        :src="noUser.photoURL"
+        alt="nouser Image"
+        width="30"
+        height="30"
+        style="border-radius:50%;"
+      />
       <span class="ml-2">{{ noUser.name }}</span>
     </v-card-title>
     <v-layout justify-center>
       <v-img
         class="white--text responsive-img-size"
         :src="Shop.image_url.shop_image1"
+        alt="shopImage"
         @click="openDialog()"
       >
         <v-container fill-height fluid>

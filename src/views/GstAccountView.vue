@@ -3,7 +3,7 @@
     <v-row v-if="user" align="center">
       <v-col cols="4">
         <v-layout justify-center>
-          <img class="account_img" :src="user.photoURL" />
+          <img class="account_img" :src="user.photoURL" alt="userImage" />
         </v-layout>
       </v-col>
       <v-col cols="8">

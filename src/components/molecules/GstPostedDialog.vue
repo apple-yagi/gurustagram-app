@@ -11,6 +11,7 @@
         <v-img
           class="white--text responsive-dialog-img"
           :src="currentShop.image_url.shop_image1"
+          alt="shopImage"
           style="max-height: 250px;"
         >
           <v-container fluid>
@@ -25,6 +26,7 @@
           v-if="currentShop.image_url.shop_image2"
           class="responsive-dialog-img"
           :src="currentShop.image_url.shop_image2"
+          alt="shopImage"
           style="max-height: 250px;"
         ></v-img>
       </v-layout>

@@ -37,9 +37,7 @@
                 <v-layout v-if="message" justify-center>
                   <GstAlertMessage :message="message" :alert-type="alertType" />
                 </v-layout>
-                <!-- <v-layout justify-center> -->
-                <v-text-field label="ユーザー名" v-model="displayName" :rules="nameRules" required></v-text-field>
-                <!-- </v-layout> -->
+                <v-text-field label="ユーザー名" v-model="displayName" :rules="nameRules" required />
               </v-col>
             </v-layout>
 

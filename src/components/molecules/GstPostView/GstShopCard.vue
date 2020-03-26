@@ -2,7 +2,13 @@
   <v-col cols="12" sm="6" md="6" lg="4">
     <v-card @click="openDialog(shop)">
       <v-layout justify-center>
-        <v-img class="white--text" height="300px" width="300px" :src="shop.image_url.shop_image1">
+        <v-img
+          class="white--text"
+          height="300px"
+          width="300px"
+          :src="shop.image_url.shop_image1"
+          alt="shopImage"
+        >
           <v-container fill-height fluid>
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>

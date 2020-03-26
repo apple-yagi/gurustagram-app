@@ -11,7 +11,11 @@
                   <v-col cols="12" xs="10" sm="6">
                     <v-layout justify-center>
                       <label for="file_photo">
-                        <img :src="uploadImage" style="width: 150px; border-radius: 50%;" />
+                        <img
+                          :src="uploadImage"
+                          alt="editProfileImage"
+                          style="width: 150px; border-radius: 50%;"
+                        />
                         <br />
                         <label class="upload-img-btn">
                           プロフィール画像を変更する

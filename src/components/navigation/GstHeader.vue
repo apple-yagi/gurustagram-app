@@ -10,6 +10,7 @@
       <img
         v-if="currentUser"
         :src="currentUser.photoURL"
+        alt="userImage"
         width="30"
         height="30"
         style="border-radius: 50%;"
