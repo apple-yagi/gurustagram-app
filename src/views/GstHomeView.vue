@@ -37,6 +37,7 @@ hr {
 import GstAlertMessage from "@/components/atoms/GstAlertMessage";
 import GstPostedCard from "@/components/molecules/GstPostedCard";
 import GstPostedDialog from "@/components/molecules/GstPostedDialog";
+import firebase from "firebase/app";
 
 export default {
   name: "home",
@@ -52,7 +53,9 @@ export default {
       currentShop: null,
       dialog: false,
       message: null,
-      alertType: "error"
+      alertType: "error",
+      postedShops: null,
+      reverseShops: []
     };
   },
 
@@ -60,6 +63,19 @@ export default {
     this.$store.dispatch("setShops").catch(err => {
       this.message = err;
     });
+  },
+
+  created() {
+    firebase
+      .database()
+      .ref("shops")
+      .on("value", snapshot => {
+        if (snapshot.val()) {
+          for (let shop in snapshot.val()) {
+            this.reverseShops.push(snapshot.val()[shop]);
+          }
+        }
+      });
   },
 
   methods: {
@@ -76,7 +92,7 @@ export default {
 
   computed: {
     Shops() {
-      return this.$store.getters.reverseShops;
+      return this.reverseShops.reverse();
     }
   }
 };

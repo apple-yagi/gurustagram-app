@@ -4,6 +4,7 @@
     transition="dialog-bottom-transition"
     max-width="600px"
     scrollable
+    persistent
     activator
   >
     <v-card @click="closeDialog()">
