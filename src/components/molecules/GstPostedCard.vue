@@ -75,21 +75,31 @@ export default {
   },
 
   created() {
-    Auth.getUserInfo(this.Shop.uid)
-      .then(user => {
-        this.User = user;
-      })
-      .catch(err => {
-        this.noUser = {
-          name: err,
-          photoURL: process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT
-        };
-      });
+    this.getUserInfo(this.Shop.uid);
+  },
+
+  watch: {
+    Shop: function(val, oldVal) {
+      this.getUserInfo(val.uid);
+    }
   },
 
   methods: {
     openDialog() {
       this.$emit("openDialog");
+    },
+
+    getUserInfo(uid) {
+      Auth.getUserInfo(uid)
+        .then(user => {
+          this.User = user;
+        })
+        .catch(err => {
+          this.noUser = {
+            name: err,
+            photoURL: process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT
+          };
+        });
     }
   }
 };
