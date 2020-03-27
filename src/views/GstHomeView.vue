@@ -77,6 +77,14 @@ export default {
       });
   },
 
+  watch: {
+    postedShops: function(val, oldVal) {
+      this.$store.dispatch("setShops").catch(err => {
+        this.message = err;
+      });
+    }
+  },
+
   methods: {
     openDialog: function(Shop) {
       this.currentShop = Shop;
@@ -91,7 +99,7 @@ export default {
 
   computed: {
     Shops() {
-      return this.postedShops.reverse();
+      return this.$store.getters.reverseShops;
     }
   }
 };
