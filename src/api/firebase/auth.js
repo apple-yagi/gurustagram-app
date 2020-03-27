@@ -70,7 +70,7 @@ export default {
         photoURL: photoURL
       })
         .then(() => {
-          this.setUserInfo(user, imageFileName)
+          this.updateUserInfo(user, imageFileName)
             .then(() => {
               resolve()
             })
@@ -105,7 +105,7 @@ export default {
     })
   },
 
-  setUserInfo(user, imageFileName) {
+  updateUserInfo(user, imageFileName) {
     return new Promise((resolve, reject) => {
       firebase
         .database()
