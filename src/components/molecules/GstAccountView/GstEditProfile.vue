@@ -146,7 +146,7 @@ export default {
           this.closeEditProfileDialog();
         })
         .catch(err => {
-          this.message = err;
+          this.message = err.message;
           this.alertType = "error";
         })
         .finally(() => {
