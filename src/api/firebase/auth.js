@@ -53,7 +53,7 @@ export default {
     var imageFileName = null
     var user = firebase.auth().currentUser;
 
-    if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT) {
+    if (imageFile != process.env.VUE_APP_ACCOUNT_IMAGE_DEFAULT && imageFile != user.photoURL) {
       await this.putImageToStorage(user, imageFile)
         .then(url => {
           photoURL = url
@@ -99,6 +99,9 @@ export default {
             reject(error)
           })
       })
+        .catch(err => {
+          console.log("putImageToStorage Error")
+        })
     })
   },
 
