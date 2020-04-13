@@ -51,13 +51,25 @@ export default {
         { title: "Home", icon: "mdi-home", to: "/" },
         { title: "Account", icon: "mdi-account", to: "/account" },
         { title: "Post", icon: "mdi-send", to: "/post" }
-      ]
+      ],
+      user: null
     };
+  },
+
+  created() {
+    this.user = this.$store.state.currentUser;
+  },
+
+  watch: {
+    currentUser: function(val, oldVal) {
+      console.log(val);
+      this.user = val;
+    }
   },
 
   computed: {
     currentUser() {
-      return this.$store.getters.getCurrentUser;
+      return this.$store.state.currentUser;
     }
   }
 };

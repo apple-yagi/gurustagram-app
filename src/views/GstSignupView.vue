@@ -135,7 +135,7 @@ export default {
 
         // ユーザーの名前、プロフィール画像を登録
         await Auth.updateProfile(this.name, this.imageFile).catch(error => {
-          this.message = "profile登録エラー";
+          this.message = "ユーザー登録に失敗しました";
           this.alertType = "error";
           this.loading = false;
         });

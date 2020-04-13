@@ -22,12 +22,6 @@
 
 <script>
 export default {
-  name: "Header"
-};
-</script>
-
-<script>
-export default {
   name: "GstHeader",
 
   computed: {
