@@ -144,7 +144,7 @@ export default {
         await this.$store.dispatch("setCurrentUser");
 
         // マイページへ遷移
-        this.$router.push({ path: "/account" });
+        this.$router.push({ path: "/mypage" });
       }
     },
 

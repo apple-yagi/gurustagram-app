@@ -8,10 +8,6 @@
 import GstLoginForm from "@/components/molecules/GstLoginView/GstLoginForm";
 import Auth from "../api/firebase/auth";
 
-import firebase from "firebase/app";
-import "firebase/storage";
-import "firebase/auth";
-
 export default {
   name: "GstLoginView",
 
@@ -27,13 +23,13 @@ export default {
 
   beforeCreate() {
     if (this.$store.state.currentUser) {
-      this.$router.push({ path: "/account" });
+      this.$router.push({ path: "/mypage" });
     }
   },
 
   created() {
     this.$store.dispatch("setCurrentUser").then(() => {
-      this.$router.push({ path: "/account" });
+      this.$router.push({ path: "/mypage" });
     });
   },
 
@@ -43,7 +39,7 @@ export default {
         Auth.login(email, password)
           .then(() => {
             this.$store.dispatch("setCurrentUser").then(() => {
-              this.$router.push({ path: "/account" });
+              this.$router.push({ path: "/mypage" });
             });
           })
           .catch(err => {

@@ -3,21 +3,25 @@ import GstLoginView from '@/views/GstLoginView'
 import GstPostView from '@/views/GstPostView'
 import GstSignupView from '@/views/GstSignupView'
 import GstAccountView from '@/views/GstAccountView'
+import GstSearchView from '@/views/GstSearchView'
 
-export default [
-  {
+export default [{
     path: '/',
     component: GstHomeView,
   },
   {
     path: '/post',
     component: GstPostView,
-    meta: { requiresAuth: true }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: '/account',
+    path: '/mypage',
     component: GstAccountView,
-    meta: { requiresAuth: true }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
@@ -26,6 +30,10 @@ export default [
   {
     path: '/signup',
     component: GstSignupView
+  },
+  {
+    path: '/search',
+    component: GstSearchView
   },
   {
     path: '*',

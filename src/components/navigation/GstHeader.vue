@@ -6,7 +6,7 @@
     </v-btn>
 
     <v-spacer />
-    <v-btn to="/account" icon>
+    <v-btn to="/mypage" icon>
       <img
         v-if="currentUser"
         :src="currentUser.photoURL"

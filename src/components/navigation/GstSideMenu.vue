@@ -49,8 +49,9 @@ export default {
     return {
       items: [
         { title: "Home", icon: "mdi-home", to: "/" },
-        { title: "Account", icon: "mdi-account", to: "/account" },
-        { title: "Post", icon: "mdi-send", to: "/post" }
+        { title: "Account", icon: "mdi-account", to: "/mypage" },
+        { title: "Post", icon: "mdi-send", to: "/post" },
+        { title: "Search", icon: "mdi-magnify", to: "/search" }
       ],
       user: null
     };
