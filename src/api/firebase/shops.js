@@ -51,7 +51,7 @@ export default {
     // ユーザーが投稿した記事のデータを取得
     var shopList = await this.searchPostedShops(shopIDList);
 
-    return Promise.resolve(shopList);
+    return Promise.resolve(shopList.reverse());
   },
 
   async loadPostedShopsByAreaCode(areaCode) {

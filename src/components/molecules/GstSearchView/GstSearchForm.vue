@@ -79,7 +79,7 @@ export default {
       );
 
       // 親コンポーネントに伝搬
-      this.$emit("refPostedShops", this.postedShops);
+      this.$emit("refPostedShops", this.postedShops.reverse());
 
       this.custom_GstButton.loading = false;
     }
