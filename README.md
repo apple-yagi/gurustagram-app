@@ -1,31 +1,49 @@
-# gurustagram-app
+# Gurustagram
 
-## Project setup
-```
-npm install
-```
+## 概要
+自分の行った飲食店の情報を投稿できるWebアプリケーションです。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+お店の情報とともに、コメントも一緒に投稿することができます。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+URL：https://gurustagram-app.firebaseapp.com/#/
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 機能
+### ユーザー機能
+ ・作成
+ 
+ ・編集（名前、プロフィール画像）
+ 
+ ・ログイン
+ 
+### 投稿記事
+ ・表示
+ 
+ ・作成
+ 
+ ・検索
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## 開発環境
+### Vue.js
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
+ ・Vue 2.6.10
+
+ ・Vue CLI 3.0.1
+
+ ・Vuetify 2.2.11
+ 
+ ・Vuex 3.0.1
+ 
+ ・Vue Router 3.0.3
+
+### Firebase
+ ・Authentication
+ 
+ ・Realtime Database
+ 
+ ・Storage
+ 
+ ・Hosting
+ 
+ ・Functions
+ 
+ ・Analytics
